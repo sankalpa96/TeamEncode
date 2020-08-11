@@ -9,7 +9,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 	
-	private String title;
+	private String title;	//change tItLe to title
 	private String AuThOr;
 	private String CALLNO;
 	private int iD;
@@ -20,7 +20,7 @@ public class Book implements Serializable {
 	
 	public Book(String author, String title, String callNo, int id) {
 		this.AuThOr = author;
-		this.title = title;
+		this.title = title;		//change tItLe to title
 		this.CALLNO = callNo;
 		this.iD = id;
 		this.StAtE = sTaTe.AVAILABLE;
@@ -29,7 +29,7 @@ public class Book implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(iD).append("\n")
-		  .append("  Title:  ").append(title).append("\n")
+		  .append("  Title:  ").append(title).append("\n")		//change tItLe to title
 		  .append("  Author: ").append(AuThOr).append("\n")
 		  .append("  CallNo: ").append(CALLNO).append("\n")
 		  .append("  State:  ").append(StAtE);
@@ -42,7 +42,7 @@ public class Book implements Serializable {
 	}
 
 	public String gEtTiTlE() {
-		return title;
+		return title;	//change tItLe to title
 	}
 
 
