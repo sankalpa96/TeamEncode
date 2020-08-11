@@ -1,7 +1,11 @@
 package library.entities;
 import java.io.Serializable;
 
+// Author : Poornima
+// Reviewer : Rovin
+// Mediator : Sankalpa
 // Change 1 - change tItLe to title
+
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 	
