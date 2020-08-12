@@ -2,7 +2,7 @@ package library.entities;
 import java.io.Serializable;
 
 // Author : Poornima
-// Reviewer : Rovin
+// Reviewer : Rovidu
 // Mediator : Sankalpa
 // Change 1 - change tItLe to title
 // Change 2 - change AuThOr to author
