@@ -35,7 +35,7 @@ public class Library implements Serializable {
 	//private static final double maxFinesOwed = 1.0;
 	private static final double MAX_FINES_OWED = 1.0; 	//Constant name maxFinesOwed was changed to MAX_FINES_OWED
 	//private static final double damageFee = 2.0;
-	private static final double DAMAGE_FEE = 2.0; 	//damageFee was changed to DAMAGE_FEE
+	private static final double DAMAGE_FEE = 2.0; 	////Constant name damageFee was changed to DAMAGE_FEE
 	
 	private static Library SeLf;
 	private int bOoK_Id;
