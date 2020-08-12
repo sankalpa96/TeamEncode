@@ -1,6 +1,8 @@
 
 //constant names have been changed to proper format
-//Updated by: Chathura Jayashanka Rathnasekara Konara Mudiynaselage
+//Author: Chathura
+//Reviewer: Poornima
+//Mediator: Rovidu
 
 package library.entities;
 
@@ -23,17 +25,17 @@ public class Library implements Serializable {
 	
 
 	//private static final String lIbRaRyFiLe = "library.obj";
-	private static final String LIBRARY_FILE = "library.obj"; 	//lIbRaRyFiLe was changed to LIBRARY_FILE
+	private static final String LIBRARY_FILE = "library.obj"; 	//Constant name lIbRaRyFiLe was changed to LIBRARY_FILE
 	//private static final int lOaNlImIt  = 2;
-	private static final int LOAN_LIMIT = 2; 	//lOaNlImIt  was changed to LOAN_LIMIT
+	private static final int LOAN_LIMIT = 2; 	//Constant name lOaNlImIt  was changed to LOAN_LIMIT
 	//private static final int loanPeriod = 2;
-	private static final int LOAN_PERIOD = 2; 	//loanPeriod  was changed to LOAN_PERIOD
+	private static final int LOAN_PERIOD = 2; 	//Constant name loanPeriod  was changed to LOAN_PERIOD
 	//private static final double FiNe_PeR_DaY = 1.0;
-	private static final double FINE_PER_DAY = 1.0; 	//FiNe_PeR_DaY was changed to FINE_PER_DAY
+	private static final double FINE_PER_DAY = 1.0; 	//Constant name FiNe_PeR_DaY was changed to FINE_PER_DAY
 	//private static final double maxFinesOwed = 1.0;
-	private static final double MAX_FINES_OWED = 1.0; 	//maxFinesOwed was changed to MAX_FINES_OWED
+	private static final double MAX_FINES_OWED = 1.0; 	//Constant name maxFinesOwed was changed to MAX_FINES_OWED
 	//private static final double damageFee = 2.0;
-	private static final double DAMAGE_FEE = 2.0; 	//damageFee was changed to DAMAGE_FEE
+	private static final double DAMAGE_FEE = 2.0; 	////Constant name damageFee was changed to DAMAGE_FEE
 	
 	private static Library SeLf;
 	private int bOoK_Id;
