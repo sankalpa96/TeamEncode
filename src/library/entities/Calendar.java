@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class Calendar {
 	 
 	private static Calendar SELF; // Changed sElF to SELF by Author
-	private static java.util.Calendar CALENDAR; // Changed CALENDAR to CALENDAR by Author
+	private static java.util.Calendar CALENDAR; // Changed cAlEnDaR to CALENDAR by Author
 	
 	
 	private Calendar() {
