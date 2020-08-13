@@ -43,7 +43,7 @@ public class Library implements Serializable {
 	private int mEmBeR_Id;
 	private int lOaN_Id;
 	//private Date lOaN_DaTe;
-	private Date loanDate; 	//Variable name lOaN_DaTe was changed to loanDate
+	private Date loanDate; 	 //Variable name lOaN_DaTe was changed to loanDate
 	
 	private Map<Integer, Book> CaTaLoG;
 	private Map<Integer, Member> MeMbErS;
