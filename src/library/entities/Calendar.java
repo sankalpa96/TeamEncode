@@ -2,9 +2,13 @@ package library.entities;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+// Author   : Rovidu
+// Reviewer : Sankalpa
+// Mediator : Chathura
+
 public class Calendar {
 	
-	private static Calendar sElF;
+	private static Calendar SELF;   // Changed sElF to SELF
 	private static java.util.Calendar cAlEnDaR;
 	
 	
@@ -13,10 +17,10 @@ public class Calendar {
 	}
 	
 	public static Calendar gEtInStAnCe() {
-		if (sElF == null) {
-			sElF = new Calendar();
+		if (SELF == null) {
+			SELF = new Calendar();
 		}
-		return sElF;
+		return SELF;
 	}
 	
 	public void incrementDate(int days) {

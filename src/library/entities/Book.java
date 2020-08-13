@@ -1,12 +1,17 @@
 package library.entities;
 import java.io.Serializable;
 
+// Author : Poornima
+// Reviewer : Rovin
+// Mediator : Sankalpa
 // Change 1 - change tItLe to title
+// Change 2 - change AuThOr to author
+
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 	
-	private String title;
-	private String AuThOr;
+	private String title;	//change tItLe to title
+	private String author;	// change AuThOr to author
 	private String CALLNO;
 	private int iD;
 	
@@ -15,8 +20,8 @@ public class Book implements Serializable {
 	
 	
 	public Book(String author, String title, String callNo, int id) {
-		this.AuThOr = author;
-		this.title = title;
+		this.author = author;	// change AuThOr to author
+		this.title = title;		// change tItLe to title
 		this.CALLNO = callNo;
 		this.iD = id;
 		this.StAtE = sTaTe.AVAILABLE;
@@ -25,8 +30,8 @@ public class Book implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(iD).append("\n")
-		  .append("  Title:  ").append(title).append("\n")
-		  .append("  Author: ").append(AuThOr).append("\n")
+		  .append("  Title:  ").append(title).append("\n")		// change tItLe to title
+		  .append("  Author: ").append(author).append("\n")		// change AuThOr to author
 		  .append("  CallNo: ").append(CALLNO).append("\n")
 		  .append("  State:  ").append(StAtE);
 		
@@ -38,7 +43,7 @@ public class Book implements Serializable {
 	}
 
 	public String gEtTiTlE() {
-		return title;
+		return title;	//change tItLe to title
 	}
 
 
