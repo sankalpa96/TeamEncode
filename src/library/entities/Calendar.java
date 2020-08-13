@@ -8,61 +8,69 @@ import java.util.concurrent.TimeUnit;
 
 public class Calendar {
 	 
-	private static Calendar SELF; // Changed sElF to SELF by Author
-	private static java.util.Calendar CALENDAR; // Changed cAlEnDaR to CALENDAR by Author
+//        private static Calendar sElF;
+        private static Calendar self; // Changed sElF to self by Author
+        
+//        private static java.util.Calendar cAlEnDaR;  
+	private static java.util.Calendar calender; // Changed cAlEnDaR to calender by Author
 	
 	
 	private Calendar() {
-		CALENDAR = java.util.Calendar.getInstance();
+		calender = java.util.Calendar.getInstance();
 	}
 	
-	public static Calendar gEtInStAnCe() {
-		if (SELF == null) {
-			SELF = new Calendar();
+//	public static Calendar gEtInStAnCe() {
+        public static Calendar getInstance() { // Changed gEtInStAnCe to getInstance by author
+		if (self == null) {
+			self = new Calendar();
 		}
-		return SELF;
+		return self;
 	}
 	
 	public void incrementDate(int days) {
-		CALENDAR.add(java.util.Calendar.DATE, days);		
+		calender.add(java.util.Calendar.DATE, days);		
 	}
 	
-	public synchronized void SeT_DaTe(Date DaTe) {
+//	public synchronized void SeT_DaTe(Date DaTe) {
+        public synchronized void setDate(Date DaTe) { // Changed SeT_DaTe to setDate by author
 		try {
-			CALENDAR.setTime(DaTe);
-	        CALENDAR.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        CALENDAR.set(java.util.Calendar.MINUTE, 0);  
-	        CALENDAR.set(java.util.Calendar.SECOND, 0);  
-	        CALENDAR.set(java.util.Calendar.MILLISECOND, 0);
+			calender.setTime(DaTe);
+	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);  
+	        calender.set(java.util.Calendar.MINUTE, 0);  
+	        calender.set(java.util.Calendar.SECOND, 0);  
+	        calender.set(java.util.Calendar.MILLISECOND, 0);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}	
 	}
-	public synchronized Date gEt_DaTe() {
+        
+//	public synchronized Date gEt_DaTe() {
+        public synchronized Date getDate() { // Changed gEt_DaTe to getDate by author
 		try {
-	        CALENDAR.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        CALENDAR.set(java.util.Calendar.MINUTE, 0);  
-	        CALENDAR.set(java.util.Calendar.SECOND, 0);  
-	        CALENDAR.set(java.util.Calendar.MILLISECOND, 0);
-			return CALENDAR.getTime();
+	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);  
+	        calender.set(java.util.Calendar.MINUTE, 0);  
+	        calender.set(java.util.Calendar.SECOND, 0);  
+	        calender.set(java.util.Calendar.MILLISECOND, 0);
+			return calender.getTime();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}	
 	}
 
-	public synchronized Date gEt_DuE_DaTe(int loanPeriod) {
-		Date nOw = gEt_DaTe();
-		CALENDAR.add(java.util.Calendar.DATE, loanPeriod);
-		Date dUeDaTe = CALENDAR.getTime();
-		CALENDAR.setTime(nOw);
+//	public synchronized Date gEt_DuE_DaTe(int loanPeriod) {
+        public synchronized Date getDueDate(int loanPeriod) { // Changed gEt_DuE_DaTe to getDueDate by author
+		Date nOw = getDate();
+		calender.add(java.util.Calendar.DATE, loanPeriod);
+		Date dUeDaTe = calender.getTime();
+		calender.setTime(nOw);
 		return dUeDaTe;
 	}
-	
-	public synchronized long GeT_DaYs_DiFfErEnCe(Date targetDate) {
-		
-		long Diff_Millis = gEt_DaTe().getTime() - targetDate.getTime();
+	        
+//	public synchronized long GeT_DaYs_DiFfErEnCe(Date targetDate) {		
+        public synchronized long getDaysDifference(Date targetDate) { // Changed GeT_DaYs_DiFfErEnCe to getDaysDifference by author	
+		long Diff_Millis = getDate().getTime() - targetDate.getTime();
 	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
 	    return Diff_Days;
 	}
