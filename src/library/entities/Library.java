@@ -35,13 +35,15 @@ public class Library implements Serializable {
 	//private static final double maxFinesOwed = 1.0;
 	private static final double MAX_FINES_OWED = 1.0; 	//Constant name maxFinesOwed was changed to MAX_FINES_OWED
 	//private static final double damageFee = 2.0;
-	private static final double DAMAGE_FEE = 2.0; 	////Constant name damageFee was changed to DAMAGE_FEE
+	private static final double DAMAGE_FEE = 2.0; 	//Constant name damageFee was changed to DAMAGE_FEE
 	
-	private static Library SeLf;
+	//private static Library SeLf;
+	private static Library self; 	//Variable name SeLf was changed to self
 	private int bOoK_Id;
 	private int mEmBeR_Id;
 	private int lOaN_Id;
-	private Date lOaN_DaTe;
+	//private Date lOaN_DaTe;
+	private Date loanDate; 	//Variable name lOaN_DaTe was changed to loanDate
 	
 	private Map<Integer, Book> CaTaLoG;
 	private Map<Integer, Member> MeMbErS;
@@ -63,30 +65,30 @@ public class Library implements Serializable {
 
 	
 	public static synchronized Library GeTiNsTaNcE() {		
-		if (SeLf == null) {
+		if (self == null) {
 			Path PATH = Paths.get(LIBRARY_FILE);			
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
 			    
-					SeLf = (Library) LiBrArY_FiLe.readObject();
-					Calendar.gEtInStAnCe().SeT_DaTe(SeLf.lOaN_DaTe);
+					self = (Library) LiBrArY_FiLe.readObject();
+					Calendar.gEtInStAnCe().SeT_DaTe(self.loanDate);
 					LiBrArY_FiLe.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new Library();
+			else self = new Library();
 		}
-		return SeLf;
+		return self;
 	}
 
 	
 	public static synchronized void SaVe() {
-		if (SeLf != null) {
-			SeLf.lOaN_DaTe = Calendar.gEtInStAnCe().gEt_DaTe();
+		if (self != null) {
+			self.loanDate = Calendar.gEtInStAnCe().gEt_DaTe();
 			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-				LiBrArY_fIlE.writeObject(SeLf);
+				LiBrArY_fIlE.writeObject(self);
 				LiBrArY_fIlE.flush();
 				LiBrArY_fIlE.close();	
 			}
