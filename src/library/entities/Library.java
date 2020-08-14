@@ -39,11 +39,14 @@ public class Library implements Serializable {
 	
 	//private static Library SeLf;
 	private static Library self; 	//Variable name SeLf was changed to self
-	private int bOoK_Id;
-	private int mEmBeR_Id;
-	private int lOaN_Id;
+	//private int bOoK_Id;
+	private int bookId; 	//Variable name bOoK_Id was changed to bookId
+	//private int mEmBeR_Id;
+	private int memberId; 	//Variable name mEmBeR_Id was changed to memberId
+	//private int lOaN_Id;
+	private int loanId; 	//Variable name lOaN_Id was changed to loanId
 	//private Date lOaN_DaTe;
-	private Date loanDate; 	 //Variable name lOaN_DaTe was changed to loanDate
+	private Date loanDate; 	//Variable name lOaN_DaTe was changed to loanDate
 	
 	private Map<Integer, Book> CaTaLoG;
 	private Map<Integer, Member> MeMbErS;
@@ -58,9 +61,9 @@ public class Library implements Serializable {
 		LoAnS = new HashMap<>();
 		CuRrEnT_LoAnS = new HashMap<>();
 		DaMaGeD_BoOkS = new HashMap<>();
-		bOoK_Id = 1;
-		mEmBeR_Id = 1;		
-		lOaN_Id = 1;		
+		bookId = 1;
+		memberId = 1;		
+		loanId = 1;		
 	}
 
 	
@@ -100,27 +103,27 @@ public class Library implements Serializable {
 
 	
 	public int gEt_BoOkId() {
-		return bOoK_Id;
+		return bookId;
 	}
 	
 	
-	public int gEt_MeMbEr_Id() {
-		return mEmBeR_Id;
+	public int gEt_memberId() {
+		return memberId;
 	}
 	
 	
-	private int gEt_NeXt_BoOk_Id() {
-		return bOoK_Id++;
-	}
-
-	
-	private int gEt_NeXt_MeMbEr_Id() {
-		return mEmBeR_Id++;
+	private int gEt_NeXt_bookId() {
+		return bookId++;
 	}
 
 	
-	private int gEt_NeXt_LoAn_Id() {
-		return lOaN_Id++;
+	private int gEt_NeXt_memberId() {
+		return memberId++;
+	}
+
+	
+	private int gEt_NeXt_loanId() {
+		return loanId++;
 	}
 
 	
@@ -140,14 +143,14 @@ public class Library implements Serializable {
 
 
 	public Member aDd_MeMbEr(String lastName, String firstName, String email, int phoneNo) {		
-		Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_MeMbEr_Id());
+		Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_memberId());
 		MeMbErS.put(member.GeT_ID(), member);		
 		return member;
 	}
 
 	
 	public Book aDd_BoOk(String a, String t, String c) {		
-		Book b = new Book(a, t, c, gEt_NeXt_BoOk_Id());
+		Book b = new Book(a, t, c, gEt_NeXt_bookId());
 		CaTaLoG.put(b.gEtId(), b);		
 		return b;
 	}
@@ -194,7 +197,7 @@ public class Library implements Serializable {
 	
 	public Loan iSsUe_LoAn(Book book, Member member) {
 		Date dueDate = Calendar.gEtInStAnCe().gEt_DuE_DaTe(LOAN_PERIOD);
-		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), book, member, dueDate);
+		Loan loan = new Loan(gEt_NeXt_loanId(), book, member, dueDate);
 		member.TaKe_OuT_LoAn(loan);
 		book.BoRrOw();
 		LoAnS.put(loan.GeT_Id(), loan);
