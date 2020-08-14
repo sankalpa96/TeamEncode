@@ -4,6 +4,7 @@ import java.io.Serializable;
 // Author : Poornima
 // Reviewer : Rovidu
 // Mediator : Sankalpa
+
 // Change 1 - change tItLe to title
 // Change 2 - change AuThOr to author
 // Change 3 - change CALLNO to callNo
@@ -11,6 +12,7 @@ import java.io.Serializable;
 // Change 5 - change enum name sTaTe to State
 // Change 6 - change enum object name StAtE to state
 // Change 7 - change function names gEtId & gEtTiTlE to getId & getTitle
+// Change 8 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -72,20 +74,21 @@ public class Book implements Serializable {
 	}
 
 
-	
-	public boolean iS_AvAiLaBlE() {
+	//public boolean iS_AvAiLaBlE() {
+	public boolean isAvailable() {		// change iS_AvAiLaBlE to isAvailable
 		//return StAtE == sTaTe.AVAILABLE;
 		return state == State.AVAILABLE;  // change sTaTe to State and StAtE to state
 	}
 
 	
-	public boolean iS_On_LoAn() {
+	//public boolean iS_On_LoAn() {
+		public boolean isOnLoan() {		// change iS_On_LoAn to isOnLoan
 		//return StAtE == sTaTe.ON_LOAN;
 		return state == State.ON_LOAN;	// change sTaTe to State and StAtE to state
 	}
 
-	
-	public boolean iS_DaMaGeD() {
+	//public boolean iS_DaMaGeD() {
+	public boolean isDamaged() {		// change iS_DaMaGeD to isDamaged 
 		//return StAtE == sTaTe.DAMAGED;
 		return state == State.DAMAGED;	// change sTaTe to State and StAtE to state
 	}
