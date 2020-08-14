@@ -10,6 +10,7 @@ import java.io.Serializable;
 // Change 4 - change iD to id
 // Change 5 - change enum name sTaTe to State
 // Change 6 - change enum object name StAtE to state
+// Change 7 - change function names gEtId & gEtTiTlE to getId & getTitle
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -58,11 +59,14 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
-	public Integer gEtId() {
-		return iD;
+	//public Integer gEtId() {	
+	public Integer getId() {	// change gEtId to getId
+		//return iD;
+		return id;		// change iD to id
 	}
 
-	public String gEtTiTlE() {
+	//public String gEtTiTlE() {
+	public String getTitle() {	// change gEtTiTlE to getTitle
 		//return tItLe;
 		return title;	//change tItLe to title
 	}
