@@ -14,6 +14,7 @@ import java.io.Serializable;
 // Change 7 - change function names gEtId & gEtTiTlE to getId & getTitle
 // Change 8 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
 // Change 9	- change function names BoRrOw, ReTuRn, RePaIr
+// Change 10 - change parameter DaMaGeD to damaged
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -111,10 +112,11 @@ public class Book implements Serializable {
 
 
 	//public void ReTuRn(boolean DaMaGeD) {
-	public void returnBook(boolean DaMaGeD) {	// change ReTuRn to returnBook
+	public void returnBook(boolean DaMaGeD) {	// change ReTuRn to returnBook and DaMaGeD to damaged
 		//if (StAtE.equals(sTaTe.ON_LOAN)) 
 		if (state.equals(State.ON_LOAN)) 	// change sTaTe to State and StAtE to state
-			if (DaMaGeD) 
+			//if (DaMaGeD)
+			if (damaged) 		// change DaMaGeD to damaged
 				//StAtE = sTaTe.DAMAGED;
 				state = State.DAMAGED;		// change sTaTe to State and StAtE to state
 			
