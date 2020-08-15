@@ -13,7 +13,8 @@ public class Calendar {
         
 //    private static java.util.Calendar cAlEnDaR;  
     private static java.util.Calendar calender; // Changed cAlEnDaR to calender by Author
-		
+	
+	
     private Calendar() {
         calender = java.util.Calendar.getInstance();
     }
@@ -31,9 +32,9 @@ public class Calendar {
     }
 	
 //    public synchronized void SeT_DaTe(Date DaTe) {
-    public synchronized void setDate(Date date) { // Changed SeT_DaTe to setDate by author
+    public synchronized void setDate(Date DaTe) { // Changed SeT_DaTe to setDate by author
         try {
-            calender.setTime(date);
+            calender.setTime(DaTe);
             calender.set(java.util.Calendar.HOUR_OF_DAY, 0);  
             calender.set(java.util.Calendar.MINUTE, 0);  
             calender.set(java.util.Calendar.SECOND, 0);  
@@ -60,23 +61,17 @@ public class Calendar {
 
 //    public synchronized Date gEt_DuE_DaTe(int loanPeriod) {
     public synchronized Date getDueDate(int loanPeriod) { // Changed gEt_DuE_DaTe to getDueDate by author
-//        Date nOw = getDate();
-        Date now = getDate(); // Changed nOw to now by author
+        Date nOw = getDate();
         calender.add(java.util.Calendar.DATE, loanPeriod);
-//        Date dUeDaTe = calender.getTime();
-        Date dueDate = calender.getTime(); // Changed dUeDaTe to dueDate by author
-//        calender.setTime(nOw);
-        calender.setTime(now); // Changed nOw to now by author
-//        return dUeDaTe;
-        return dueDate; // Changed dUeDaTe to dueDate by author
+        Date dUeDaTe = calender.getTime();
+        calender.setTime(nOw);
+        return dUeDaTe;
     }
 	        
 //    public synchronized long GeT_DaYs_DiFfErEnCe(Date targetDate) {		
     public synchronized long getDaysDifference(Date targetDate) { // Changed GeT_DaYs_DiFfErEnCe to getDaysDifference by author	
-//        long Diff_Millis = getDate().getTime() - targetDate.getTime();
-        long diffMills = getDate().getTime() - targetDate.getTime(); // Changed Diff_Millis to diffMills by author
-//        long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
-        long diffDays = TimeUnit.DAYS.convert(diffMills, TimeUnit.MILLISECONDS); // Changed Diff_Millis to diffMills & Diff_Days to diffDays by author
-        return diffDays;
+        long Diff_Millis = getDate().getTime() - targetDate.getTime();
+        long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
+        return Diff_Days;
     }
 }
