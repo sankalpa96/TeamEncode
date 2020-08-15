@@ -63,30 +63,34 @@ public class Member implements Serializable {
 	}
 
 	
-	public int GeT_ID() {
+	//public int GeT_ID() {
+	public int getId() { //changing method name GeT_ID to getId
 		return memberId;
 	}
 
 	
-	public List<Loan> GeT_LoAnS() {
+	//public List<Loan> GeT_LoAnS() {
+	public List<Loan> getLoans() { //changing method name GeT_LoAnS to getLoans
 		return new ArrayList<Loan>(currentLoans.values());
 	}
 
 	
-	public int gEt_nUmBeR_Of_CuRrEnT_LoAnS() {
+	//public int gEt_nUmBeR_Of_CuRrEnT_LoAnS() {
+	public int getNumberOfCurrentLoans() { //changing method name gEt_nUmBeR_Of_CuRrEnT_LoAnS to getNumberOfCurrentLoans
 		return currentLoans.size();
 	}
 
 	
-	public double FiNeS_OwEd() {
+	//public double FiNeS_OwEd() { 
+	public double finesOwned() { //changing method name FiNeS_OwEd to finesOwned
 		return finesOwing;
 	}
 
 	
 	//public void TaKe_OuT_LoAn(Loan lOaN) {
-	public void TaKe_OuT_LoAn(Loan loan) { //changing LoAn to loan 
-		if (!currentLoans.containsKey(loan.GeT_Id())) //changing LoAn to loan
-			currentLoans.put(loan.GeT_Id(), loan); //changing LoAn to loan
+	public void takeOutLoan(Loan loan) { //changing lOaN to loan and method name to takeOutLoan
+		if (!currentLoans.containsKey(loan.getId())) //changing lOaN to loan
+			currentLoans.put(loan.getId(), loan); //changing lOaN to loan
 		
 		else 
 			throw new RuntimeException("Duplicate loan added to member");
@@ -94,40 +98,44 @@ public class Member implements Serializable {
 	}
 
 	
-	public String GeT_lastName() {
+	//public String GeT_lastName() {
+	public String getLastName() { //changing method name GeT_lastName to getLastName
 		return lastName;
 	}
 
 	
-	public String GeT_FiRsT_NaMe() {
+	//public String GeT_FiRsT_NaMe() {
+	public String getFirstName() { //changing method name GeT_FiRsT_NaMe to getFirstName
 		return firstName;
 	}
 
 
-	public void AdD_FiNe(double fine) {
+	//public void AdD_FiNe(double fine) {
+	public void addFine(double fine) { //changing method name AdD_FiNe to addFine
 		finesOwing += fine;
 	}
 	
-	public double PaY_FiNe(double AmOuNt) {
-		if (AmOuNt < 0) 
+	//public double PaY_FiNe(double AmOuNt) {
+	public double payFine(double amount) { //changing method name PaY_FiNe to payFine and variable name to amount
+		if (amount < 0) 
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		
 		double change = 0;
-		if (AmOuNt > finesOwing) {
-			change = AmOuNt - finesOwing;
+		if (amount > finesOwing) {
+			change = amount - finesOwing;
 			finesOwing = 0;
 		}
 		else 
-			finesOwing -= AmOuNt;
+			finesOwing -= amount;
 		
 		return change;
 	}
 
 
 	//public void dIsChArGeLoAn(Loan LoAn) {
-	public void dIsChArGeLoAn(Loan loan) { //changing LoAn to loan
-		if (currentLoans.containsKey(loan.GeT_Id())) //changing LoAn to loan
-			currentLoans.remove(loan.GeT_Id()); //changing LoAn to loan
+	public void dischargeLoan(Loan loan) { //changing LoAn to loan and method name to dischargeLoan
+		if (currentLoans.containsKey(loan.getId())) //changing LoAn to loan
+			currentLoans.remove(loan.getId()); //changing LoAn to loan
 		
 		else 
 			throw new RuntimeException("No such loan held by member");
