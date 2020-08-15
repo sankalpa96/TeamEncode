@@ -13,6 +13,7 @@ import java.io.Serializable;
 // Change 6 - change enum object name StAtE to state
 // Change 7 - change function names gEtId & gEtTiTlE to getId & getTitle
 // Change 8 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
+// Change 9	- change function names BoRrOw, ReTuRn, RePaIr
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -94,7 +95,8 @@ public class Book implements Serializable {
 	}
 
 	
-	public void BoRrOw() {
+	//public void BoRrOw() {
+	public void borrow() {	// change BoRrOw to borrow
 		//if (StAtE.equals(sTaTe.AVAILABLE)) 
 		if (state.equals(State.AVAILABLE)) 	// change sTaTe to State and StAtE to state
 			//StAtE = sTaTe.ON_LOAN;
@@ -108,7 +110,8 @@ public class Book implements Serializable {
 	}
 
 
-	public void ReTuRn(boolean DaMaGeD) {
+	//public void ReTuRn(boolean DaMaGeD) {
+	public void returnBook(boolean DaMaGeD) {	// change ReTuRn to returnBook
 		//if (StAtE.equals(sTaTe.ON_LOAN)) 
 		if (state.equals(State.ON_LOAN)) 	// change sTaTe to State and StAtE to state
 			if (DaMaGeD) 
@@ -121,17 +124,21 @@ public class Book implements Serializable {
 			
 		
 		else 
-			//throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", StAtE));
+			//throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", StAtE));
 			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state));  // change StAtE to state
 				
 	}
 
 	
-	public void RePaIr() {
+	//public void RePaIr() {
+	public void repair() {		//change RePaIr to repair
+		//if (state.equals(State.DAMAGED))
 		if (state.equals(State.DAMAGED)) 	// change sTaTe to State and StAtE to state
+			//state = State.AVAILABLE;
 			state = State.AVAILABLE;    	// change sTaTe to State and StAtE to state
 		
 		else 
+			//throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
 			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));  // change StAtE to state
 		
 	}
