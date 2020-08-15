@@ -55,8 +55,9 @@ public class Member implements Serializable {
 		  .append(String.format("  Fines Owed :  $%.2f", finesOwing))
 		  .append("\n");
 		
-		for (Loan LoAn : currentLoans.values()) {
-			sb.append(LoAn).append("\n");
+		//for (Loan LoAn : currentLoans.values()) {
+		for (Loan loan : currentLoans.values()) { // changing LoAn to loan
+			sb.append(loan).append("\n"); // changing LoAn to loan
 		}		  
 		return sb.toString();
 	}
@@ -82,9 +83,10 @@ public class Member implements Serializable {
 	}
 
 	
-	public void TaKe_OuT_LoAn(Loan lOaN) {
-		if (!currentLoans.containsKey(lOaN.GeT_Id())) 
-			currentLoans.put(lOaN.GeT_Id(), lOaN);
+	//public void TaKe_OuT_LoAn(Loan lOaN) {
+	public void TaKe_OuT_LoAn(Loan loan) { //changing LoAn to loan 
+		if (!currentLoans.containsKey(loan.GeT_Id())) //changing LoAn to loan
+			currentLoans.put(loan.GeT_Id(), loan); //changing LoAn to loan
 		
 		else 
 			throw new RuntimeException("Duplicate loan added to member");
@@ -122,9 +124,10 @@ public class Member implements Serializable {
 	}
 
 
-	public void dIsChArGeLoAn(Loan LoAn) {
-		if (currentLoans.containsKey(LoAn.GeT_Id())) 
-			currentLoans.remove(LoAn.GeT_Id());
+	//public void dIsChArGeLoAn(Loan LoAn) {
+	public void dIsChArGeLoAn(Loan loan) { //changing LoAn to loan
+		if (currentLoans.containsKey(loan.GeT_Id())) //changing LoAn to loan
+			currentLoans.remove(loan.GeT_Id()); //changing LoAn to loan
 		
 		else 
 			throw new RuntimeException("No such loan held by member");
