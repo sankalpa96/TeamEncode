@@ -97,13 +97,15 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized void SaVe() {
+	//public static synchronized void SaVe() {
+	public static synchronized void save() { 	//Method name SaVe was changed to save
 		if (self != null) {
-			self.loanDate = Calendar.getInstance().gEt_DaTe();
-			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-				LiBrArY_fIlE.writeObject(self);
-				LiBrArY_fIlE.flush();
-				LiBrArY_fIlE.close();	
+			//self.loanDate = Calendar.getInstance().gEt_DaTe();
+			self.loanDate = Calendar.getInstance().gEt_DaTe(); 	//Method name gEt_DaTe was changed to getDate
+			try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+				libraryFile.writeObject(self);
+				libraryFile.flush();
+				libraryFile.close();	
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -112,27 +114,32 @@ public class Library implements Serializable {
 	}
 
 	
-	public int gEt_BoOkId() {
+	//public int gEt_BoOkId() {
+	public int getBookId() { 	//Method name gEt_BoOkId was changed to getBookId
 		return bookId;
 	}
 	
 	
-	public int gEt_memberId() {
+	//public int gEt_memberId() {
+	public int getMemberId() { 	//Method name gEt_memberId was changed to getMemberId
 		return memberId;
 	}
 	
 	
-	private int gEt_NeXt_bookId() {
+	//private int gEt_NeXt_bookId() {
+	private int getNextBookId() { 	//Method name gEt_NeXt_bookId was changed to getNextBookId
 		return bookId++;
 	}
 
 	
-	private int gEt_NeXt_memberId() {
+	//private int gEt_NeXt_memberId() {
+	private int getNextMemberId() { 	 //Method name gEt_NeXt_memberId was changed to getNextMemberId
 		return memberId++;
 	}
 
 	
-	private int gEt_NeXt_loanId() {
+	//private int gEt_NeXt_loanId() {
+	private int getNextLoanId() { 	//Method name gEt_NeXt_loanId was changed to getNextLoanId
 		return loanId++;
 	}
 
