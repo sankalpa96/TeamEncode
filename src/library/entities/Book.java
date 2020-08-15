@@ -15,6 +15,7 @@ import java.io.Serializable;
 // Change 8 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
 // Change 9	- change function names BoRrOw, ReTuRn, RePaIr
 // Change 10 - change parameter DaMaGeD to damaged
+// Change 11 - Redo if conditions in proper format using curly brackets
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -98,51 +99,59 @@ public class Book implements Serializable {
 	
 	//public void BoRrOw() {
 	public void borrow() {	// change BoRrOw to borrow
+		// Add curly brackets to if block
 		//if (StAtE.equals(sTaTe.AVAILABLE)) 
-		if (state.equals(State.AVAILABLE)) 	// change sTaTe to State and StAtE to state
+		if (state.equals(State.AVAILABLE)){ 	// change sTaTe to State and StAtE to state
 			//StAtE = sTaTe.ON_LOAN;
 			state = State.ON_LOAN;		// change sTaTe to State and StAtE to state
-		
-		else 
+		}
+		// Add curly brackets to else block
+		else {
 			//throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", StAtE));
 			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state));  // change StAtE to state
-		
+		}
 		
 	}
 
 
 	//public void ReTuRn(boolean DaMaGeD) {
 	public void returnBook(boolean DaMaGeD) {	// change ReTuRn to returnBook and DaMaGeD to damaged
+		// Add curly brackets to if block
 		//if (StAtE.equals(sTaTe.ON_LOAN)) 
-		if (state.equals(State.ON_LOAN)) 	// change sTaTe to State and StAtE to state
+		if (state.equals(State.ON_LOAN)) {	// change sTaTe to State and StAtE to state
+			// Add curly brackets to if block
 			//if (DaMaGeD)
-			if (damaged) 		// change DaMaGeD to damaged
+			if (damaged) {		// change DaMaGeD to damaged
 				//StAtE = sTaTe.DAMAGED;
 				state = State.DAMAGED;		// change sTaTe to State and StAtE to state
-			
-			else 
+			}
+			// Add curly brackets to else block
+			else {
 				//StAtE = sTaTe.AVAILABLE;
 				state = State.AVAILABLE;	// change sTaTe to State and StAtE to state
-			
-		
-		else 
+			}
+		}
+		// Add curly brackets to else block
+		else {
 			//throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", StAtE));
 			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state));  // change StAtE to state
-				
+		}		
 	}
 
 	
 	//public void RePaIr() {
 	public void repair() {		//change RePaIr to repair
+		// Add curly brackets to if block
 		//if (state.equals(State.DAMAGED))
-		if (state.equals(State.DAMAGED)) 	// change sTaTe to State and StAtE to state
+		if (state.equals(State.DAMAGED)) {	// change sTaTe to State and StAtE to state
 			//state = State.AVAILABLE;
 			state = State.AVAILABLE;    	// change sTaTe to State and StAtE to state
-		
-		else 
+		}
+		// Add curly brackets to else block
+		else {
 			//throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
 			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));  // change StAtE to state
-		
+		}
 	}
 
 
