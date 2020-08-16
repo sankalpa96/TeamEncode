@@ -202,9 +202,9 @@ public class Library implements Serializable {
 
 	
 	//public boolean cAn_MeMbEr_BoRrOw(Member member) {
-	public boolean canMemberBorrow(Member member) { 		//Method name cAn_MeMbEr_BoRrOw was changed to canMemberBorrow
+	public boolean canMemberBorrow(Member member) { 		 //Method name cAn_MeMbEr_BoRrOw was changed to canMemberBorrow
 		//if (member.gEt_nUmBeR_Of_currentLoans() == LOAN_LIMIT )
-		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 	//Method name gEt_nUmBeR_Of_currentLoans was changed to getNumberOfCurrentLoans
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 	 //Method name gEt_nUmBeR_Of_currentLoans was changed to getNumberOfCurrentLoans
 			return false;
 				
 		//if (member.FiNeS_OwEd() >= MAX_FINES_OWED)
@@ -214,7 +214,7 @@ public class Library implements Serializable {
 		//for (Loan loan : member.GeT_loans())
 		for (Loan loan : member.getLoans()) 		//Method name GeT_loans was changed to getLoans
 			//if (loan.Is_OvEr_DuE())
-			if (loan.isOverDue()) 		//Method name Is_OvEr_DuE was changed to isOverDue
+			if (loan.isOverDue()) 		 //Method name Is_OvEr_DuE was changed to isOverDue
 				return false;
 			
 		return true;
@@ -305,7 +305,7 @@ public class Library implements Serializable {
 	public void repairBook(Book currentBook) { 	//Method name RePaIr_BoOk and variavle name cUrReNt_BoOk were  changed to repairBook and currentBook
 		if (damagedBooks.containsKey(currentBook.getId())) {
 			//currentBook.RePaIr();
-			currentBook.repair(); 	//Method name RePaIr was changed to repair
+			currentBook.repair(); 		//Method name RePaIr was changed to repair
 			damagedBooks.remove(currentBook.getId());
 		}
 		else 
