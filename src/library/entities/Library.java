@@ -201,38 +201,51 @@ public class Library implements Serializable {
 	}
 
 	
-	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
-		if (member.gEt_nUmBeR_Of_currentLoans() == LOAN_LIMIT ) 
+	//public boolean cAn_MeMbEr_BoRrOw(Member member) {
+	public boolean canMemberBorrow(Member member) { 		 //Method name cAn_MeMbEr_BoRrOw was changed to canMemberBorrow
+		//if (member.gEt_nUmBeR_Of_currentLoans() == LOAN_LIMIT )
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 	 //Method name gEt_nUmBeR_Of_currentLoans was changed to getNumberOfCurrentLoans
 			return false;
 				
-		if (member.FiNeS_OwEd() >= MAX_FINES_OWED) 
+		//if (member.FiNeS_OwEd() >= MAX_FINES_OWED)
+		if (member.finesOwed() >= MAX_FINES_OWED) 		//Method name FiNeS_OwEd was changed to finesOwed
 			return false;
 				
-		for (Loan loan : member.GeT_loans()) 
-			if (loan.Is_OvEr_DuE()) 
+		//for (Loan loan : member.GeT_loans())
+		for (Loan loan : member.getLoans()) 		//Method name GeT_loans was changed to getLoans
+			//if (loan.Is_OvEr_DuE())
+			if (loan.isOverDue()) 		 //Method name Is_OvEr_DuE was changed to isOverDue
 				return false;
 			
 		return true;
 	}
 
 	
-	public int gEt_NuMbEr_Of_loans_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
-		return LOAN_LIMIT - MeMbEr.gEt_nUmBeR_Of_currentLoans();
+	//public int gEt_NuMbEr_Of_loans_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {
+	public int getNumberOfLoansRemainingForMember(Member member) { 		//Method name gEt_NuMbEr_Of_loans_ReMaInInG_FoR_MeMbEr was changed to getNumberOfLoansRemainingForMember
+		return LOAN_LIMIT - member.getNumberOfCurrentLoans();
 	}
 
 	
-	public Loan iSsUe_LoAn(Book book, Member member) {
-		Date dueDate = Calendar.getInstance().gEt_DuE_DaTe(LOAN_PERIOD);
-		Loan loan = new Loan(gEt_NeXt_loanId(), book, member, dueDate);
-		member.TaKe_OuT_LoAn(loan);
-		book.BoRrOw();
-		loans.put(loan.GeT_Id(), loan);
+	//public Loan iSsUe_LoAn(Book book, Member member) {
+	public Loan issueLoan(Book book, Member member) { 		//Method name iSsUe_LoAn was changed to issueLoan
+		//Date dueDate = Calendar.getInstance().gEt_DuE_DaTe(LOAN_PERIOD);
+		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD); 	//Method name gEt_DuE_DaTe was changed to getDueDate
+		//Loan loan = new Loan(gEt_NeXt_loanId(), book, member, dueDate);
+		Loan loan = new Loan(getNextLoanId(), book, member, dueDate); 	//Method name gEt_NeXt_loanId was changed to getNextLoanId
+		//member.TaKe_OuT_LoAn(loan);
+		member.takeOutLoan(loan); 	//Method name TaKe_OuT_LoAn was changed to takeOutLoan
+		//book.BoRrOw();
+		book.borrow(); 	//Method name BoRrOw was changed to borrow
+		//loans.put(loan.GeT_Id(), loan);
+		loans.put(loan.getId(), loan); 	//Method name GeT_Id was changed to getId
 		currentLoans.put(book.getId(), loan);
 		return loan;
 	}
 	
 	
-	public Loan GeT_LoAn_By_BoOkId(int bookId) {
+	//public Loan GeT_LoAn_By_BoOkId(int bookId) {
+	public Loan getLoanByBookId(int bookId) { 	//Method name GeT_LoAn_By_BoOkId was changed to getLoanByBookId
 		if (currentLoans.containsKey(bookId)) 
 			return currentLoans.get(bookId);
 		
@@ -240,45 +253,60 @@ public class Library implements Serializable {
 	}
 
 	
-	public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
+	//public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
+	public double calculateOverDueFine(Loan loan) { 		//Method name CaLcUlAtE_OvEr_DuE_FiNe and variable name LoAn were changed to calculateOverDueFine and loan
 		if (LoAn.Is_OvEr_DuE()) {
-			long DaYs_OvEr_DuE = Calendar.getInstance().GeT_DaYs_DiFfErEnCe(LoAn.GeT_DuE_DaTe());
-			double fInE = DaYs_OvEr_DuE * FINE_PER_DAY;
-			return fInE;
+			//long DaYs_OvEr_DuE = Calendar.getInstance().GeT_DaYs_DiFfErEnCe(LoAn.getDueDate());
+			long daysOverDue = Calendar.getInstance().getDaysDifference(LoAn.getDueDate()); 	//Method name GeT_DaYs_DiFfErEnCe and variable name DaYs_OvEr_DuE were changed to getDaysDifference and daysOverDue
+			//double fInE = daysOverDue * FINE_PER_DAY;
+			double fine = daysOverDue * FINE_PER_DAY; 	//variable fInE was changed to fine
+			return fine;
 		}
 		return 0.0;		
 	}
 
 
-	public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
-		Member mEmBeR = cUrReNt_LoAn.getMember();
-		Book bOoK  = cUrReNt_LoAn.getBook();
+	//public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
+	public void dischargeLoan(Loan currentLoan, boolean isDamaged) { 	//Method name DiScHaRgE_LoAn and variable names cUrReNt_LoAn and iS_dAmAgEd were changed to dischargeLoan, currentLoan and isDamaged
+		//Member mEmBeR = currentLoan.getMember();
+		Member member = currentLoan.getMember(); 	//variable name mEmBeR was changed to member
+		//Book bOoK  = currentLoan.getBook();
+		Book book  = currentLoan.getBook(); 	//variable name bOoK was changed to book
 		
-		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
-		mEmBeR.AdD_FiNe(oVeR_DuE_FiNe);	
+		//double oVeR_DuE_FiNe = calculateOverDueFine(currentLoan);
+		double overDueFine = calculateOverDueFine(currentLoan); 	//variable name oVeR_DuE_FiNe was changed to overDueFine
+		//member.AdD_FiNe(overDueFine);
+		member.addFine(overDueFine); 	//Method name AdD_FiNe was changed to addFine
 		
-		mEmBeR.dIsChArGeLoAn(cUrReNt_LoAn);
-		bOoK.ReTuRn(iS_dAmAgEd);
-		if (iS_dAmAgEd) {
-			mEmBeR.AdD_FiNe(DAMAGE_FEE);
-			damagedBooks.put(bOoK.getId(), bOoK);
+		member.dischargeLoan(currentLoan);
+		//book.ReTuRn(isDamaged);
+		book.return(isDamaged); 	//Method name ReTuRn was changed to return
+		if (isDamaged) {
+			member.addFine(DAMAGE_FEE);
+			damagedBooks.put(book.getId(), book);
 		}
-		cUrReNt_LoAn.DiScHaRgE();
-		currentLoans.remove(bOoK.getId());
+		//currentLoan.DiScHaRgE();
+		currentLoan.discharge(); 	//Method name DiScHaRgE was changed to discharge
+		currentLoans.remove(book.getId());
 	}
 
 
-	public void cHeCk_currentLoans() {
-		for (Loan lOaN : currentLoans.values()) 
-			lOaN.cHeCk_OvEr_DuE();
+	//public void cHeCk_currentLoans() {
+	public void checkCurrentLoans() { 		//Method name cHeCk_currentLoans was changed to checkCurrentLoans
+		//for (Loan lOaN : currentLoans.values())
+		for (Loan loan : currentLoans.values()) 	//variable name lOaN was changed to loan
+			//loan.cHeCk_OvEr_DuE();
+			loan.checkOverDue(); 	//Method name cHeCk_OvEr_DuE was changed to checkOverDue
 				
 	}
 
 
-	public void RePaIr_BoOk(Book cUrReNt_BoOk) {
-		if (damagedBooks.containsKey(cUrReNt_BoOk.getId())) {
-			cUrReNt_BoOk.RePaIr();
-			damagedBooks.remove(cUrReNt_BoOk.getId());
+	//public void RePaIr_BoOk(Book cUrReNt_BoOk) {
+	public void repairBook(Book currentBook) { 	//Method name RePaIr_BoOk and variavle name cUrReNt_BoOk were  changed to repairBook and currentBook
+		if (damagedBooks.containsKey(currentBook.getId())) {
+			//currentBook.RePaIr();
+			currentBook.repair(); 		//Method name RePaIr was changed to repair
+			damagedBooks.remove(currentBook.getId());
 		}
 		else 
 			throw new RuntimeException("Library: repairBook: book is not damaged");
