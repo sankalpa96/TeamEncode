@@ -48,12 +48,12 @@ public class Member implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Member:  ").append(memberId).append("\n")
-		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
-		  .append("  Email: ").append(emailAddress).append("\n")
-		  .append("  Phone: ").append(phoneNumber)
-		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", finesOwing))
-		  .append("\n");
+		.append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
+		.append("  Email: ").append(emailAddress).append("\n")
+		.append("  Phone: ").append(phoneNumber)
+		.append("\n")
+		.append(String.format("  Fines Owed :  $%.2f", finesOwing))
+		.append("\n");
 		
 		//for (Loan LoAn : currentLoans.values()) {
 		for (Loan loan : currentLoans.values()) { // changing LoAn to loan
@@ -89,11 +89,12 @@ public class Member implements Serializable {
 	
 	//public void TaKe_OuT_LoAn(Loan lOaN) {
 	public void takeOutLoan(Loan loan) { //changing lOaN to loan and method name to takeOutLoan
-		if (!currentLoans.containsKey(loan.getId())) //changing lOaN to loan
+		// adding single consistent bracketing style 
+		if (!currentLoans.containsKey(loan.getId())){ //changing lOaN to loan
 			currentLoans.put(loan.getId(), loan); //changing lOaN to loan
-		
-		else 
+		} else {
 			throw new RuntimeException("Duplicate loan added to member");
+		}
 				
 	}
 
@@ -117,16 +118,19 @@ public class Member implements Serializable {
 	
 	//public double PaY_FiNe(double AmOuNt) {
 	public double payFine(double amount) { //changing method name PaY_FiNe to payFine and variable name to amount
-		if (amount < 0) 
+		// adding single consistent bracketing style 
+		if (amount < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
+		}
 		
 		double change = 0;
+		// adding single consistent bracketing style 
 		if (amount > finesOwing) {
 			change = amount - finesOwing;
 			finesOwing = 0;
-		}
-		else 
+		} else {
 			finesOwing -= amount;
+		}
 		
 		return change;
 	}
@@ -134,11 +138,12 @@ public class Member implements Serializable {
 
 	//public void dIsChArGeLoAn(Loan LoAn) {
 	public void dischargeLoan(Loan loan) { //changing LoAn to loan and method name to dischargeLoan
-		if (currentLoans.containsKey(loan.getId())) //changing LoAn to loan
+		// adding single consistent bracketing style 
+		if (currentLoans.containsKey(loan.getId())) { //changing LoAn to loan
 			currentLoans.remove(loan.getId()); //changing LoAn to loan
-		
-		else 
+		} else {
 			throw new RuntimeException("No such loan held by member");
+		}
 				
 	}
 
