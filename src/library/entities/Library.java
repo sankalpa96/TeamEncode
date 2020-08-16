@@ -22,8 +22,8 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Library implements Serializable {
-	
-
+    	
+    
 	//private static final String lIbRaRyFiLe = "library.obj";
 	private static final String LIBRARY_FILE = "library.obj"; 	//Constant name lIbRaRyFiLe was changed to LIBRARY_FILE
 	//private static final int lOaNlImIt  = 2;
@@ -59,7 +59,7 @@ public class Library implements Serializable {
 	//private Map<Integer, Book> DaMaGeD_BoOkS;
 	private Map<Integer, Book> damagedBooks; 	//Variable name DaMaGeD_BoOkS was changed to damagedBooks
 	
-
+        
 	private Library() {
 		catalog = new HashMap<>();
 		members = new HashMap<>();
@@ -95,13 +95,13 @@ public class Library implements Serializable {
 		}
 		return self;
 	}
-
+                
 	
 	//public static synchronized void SaVe() {
 	public static synchronized void save() { 	//Method name SaVe was changed to save
 		if (self != null) {
 			//self.loanDate = Calendar.getInstance().gEt_DaTe();
-			self.loanDate = Calendar.getInstance().gEt_DaTe(); 	//Method name gEt_DaTe was changed to getDate
+			self.loanDate = Calendar.getInstance().getDate(); 	//Method name gEt_DaTe was changed to getDate
 			try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
 				libraryFile.writeObject(self);
 				libraryFile.flush();
@@ -164,33 +164,49 @@ public class Library implements Serializable {
 
 	//public Member aDd_MeMbEr(String lastName, String firstName, String email, int phoneNo) {
 	public Member addMember(String lastName, String firstName, String email, int phoneNo) { 	//Method name aDd_MeMbEr was changed to addMember
-		Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_memberId());
+		//Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_memberId());
+		int nextMemberId = getNextMemberId();
+		Member member = new Member(lastName, firstName, email, phoneNo, nextMemberId); 		//passed method as an argument was assigned to variable before passing
+		
 		//members.put(member.GeT_ID(), member);
-		members.put(member.getId(), member); 	//Method name GeT_ID was changed to getId
+		int idOfMember = member.getId();
+		members.put(idOfMember, member); 	//Method name GeT_ID was changed to getId and passed method as an argument was assigned to variable before passing
 		return member;
 	}
 
 	
 	//public Book aDd_BoOk(String a, String t, String c) {
 	public Book addBook(String a, String t, String c) { 	//Method name aDd_BoOk was changed to addBook
-		Book b = new Book(a, t, c, getNextBookId());
-		catalog.put(b.getId(), b);		
+		//Book b = new Book(a, t, c, getNextBookId());
+		NextBookId = getNextBookId();
+		Book b = new Book(a, t, c, NextBookId);
+		//catalog.put(b.getId(), b);
+		int bId = b.getId();
+		catalog.put(bId, b); 	//passed method as an argument was assigned to variable before passing
 		return b;
 	}
 
 	
 	//public Member gEt_MeMbEr(int memberId) {
 	public Member getMember(int memberId) { 	//Method name gEt_MeMbEr was changed to getMember
-		if (members.containsKey(memberId)) 
-			return members.get(memberId);
+		// if (members.containsKey(memberId)) 
+			// return members.get(memberId);
+		if (members.containsKey(memberId)){
+			return members.get(memberId); 	//if conditional statment without curly brackets were modified to with curly brackets
+		}
+			
 		return null;
 	}
 
 	
 	//public Book gEt_BoOk(int bookId) {
 	public Book getBook(int bookId) { 	 	//Method name gEt_BoOk was changed to getBook
-		if (catalog.containsKey(bookId)) 
-			return catalog.get(bookId);		
+		// if (catalog.containsKey(bookId)) 
+			// return catalog.get(bookId);		
+		if (catalog.containsKey(bookId)){ 	//if conditional statment without curly brackets were modified to with curly brackets 
+			return catalog.get(bookId);
+		}
+				
 		return null;
 	}
 
@@ -204,18 +220,30 @@ public class Library implements Serializable {
 	//public boolean cAn_MeMbEr_BoRrOw(Member member) {
 	public boolean canMemberBorrow(Member member) { 		 //Method name cAn_MeMbEr_BoRrOw was changed to canMemberBorrow
 		//if (member.gEt_nUmBeR_Of_currentLoans() == LOAN_LIMIT )
-		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 	 //Method name gEt_nUmBeR_Of_currentLoans was changed to getNumberOfCurrentLoans
+			//return false;
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ){ 	//if conditional statment without curly brackets were modified to with curly brackets
 			return false;
+		} 	 //Method name gEt_nUmBeR_Of_currentLoans was changed to getNumberOfCurrentLoans
+			
 				
 		//if (member.FiNeS_OwEd() >= MAX_FINES_OWED)
-		if (member.finesOwed() >= MAX_FINES_OWED) 		//Method name FiNeS_OwEd was changed to finesOwed
+			//return false;
+		if (member.finesOwed() >= MAX_FINES_OWED){ 		//if conditional statment without curly brackets were modified to with curly brackets
 			return false;
+		} 		//Method name FiNeS_OwEd was changed to finesOwed
+			
 				
 		//for (Loan loan : member.GeT_loans())
-		for (Loan loan : member.getLoans()) 		//Method name GeT_loans was changed to getLoans
 			//if (loan.Is_OvEr_DuE())
-			if (loan.isOverDue()) 		 //Method name Is_OvEr_DuE was changed to isOverDue
+				//return false;
+		for (Loan loan : member.getLoans()){ 	//Method name GeT_loans was changed to getLoans
+			if (loan.isOverDue()){ 		//Method name Is_OvEr_DuE was changed to isOverDue
 				return false;
+			} 		 //for loop and if conditional statment without curly brackets were modified to with curly brackets
+				
+		} 		
+			
+			
 			
 		return true;
 	}
@@ -232,22 +260,30 @@ public class Library implements Serializable {
 		//Date dueDate = Calendar.getInstance().gEt_DuE_DaTe(LOAN_PERIOD);
 		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD); 	//Method name gEt_DuE_DaTe was changed to getDueDate
 		//Loan loan = new Loan(gEt_NeXt_loanId(), book, member, dueDate);
-		Loan loan = new Loan(getNextLoanId(), book, member, dueDate); 	//Method name gEt_NeXt_loanId was changed to getNextLoanId
+		int nextLoanId = getNextLoanId();
+		Loan loan = new Loan(nextLoanId, book, member, dueDate); 	//Method name gEt_NeXt_loanId was changed to getNextLoanId and passed method as an argument was assigned to variable before passing
 		//member.TaKe_OuT_LoAn(loan);
 		member.takeOutLoan(loan); 	//Method name TaKe_OuT_LoAn was changed to takeOutLoan
 		//book.BoRrOw();
 		book.borrow(); 	//Method name BoRrOw was changed to borrow
 		//loans.put(loan.GeT_Id(), loan);
-		loans.put(loan.getId(), loan); 	//Method name GeT_Id was changed to getId
-		currentLoans.put(book.getId(), loan);
+		int idOfLoan = loan.getId();
+		loans.put(idOfLoan, loan); 	//Method name GeT_Id was changed to getId and  passed method as an argument was assigned to variable before passing
+		
+		//currentLoans.put(book.getId(), loan);
+		int idOfBook = book.getId();
+		currentLoans.put(book.getId(), loan); 	//passed method as an argument was assigned to variable before passing
 		return loan;
 	}
 	
 	
 	//public Loan GeT_LoAn_By_BoOkId(int bookId) {
 	public Loan getLoanByBookId(int bookId) { 	//Method name GeT_LoAn_By_BoOkId was changed to getLoanByBookId
-		if (currentLoans.containsKey(bookId)) 
+		// if (currentLoans.containsKey(bookId)) 
+			// return currentLoans.get(bookId);
+		if (currentLoans.containsKey(bookId)){ 		//if conditional statment without curly brackets were modified to with curly brackets
 			return currentLoans.get(bookId);
+		}
 		
 		return null;
 	}
@@ -255,9 +291,10 @@ public class Library implements Serializable {
 	
 	//public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
 	public double calculateOverDueFine(Loan loan) { 		//Method name CaLcUlAtE_OvEr_DuE_FiNe and variable name LoAn were changed to calculateOverDueFine and loan
-		if (LoAn.Is_OvEr_DuE()) {
+		if (LoAn.isOverDue()) {
 			//long DaYs_OvEr_DuE = Calendar.getInstance().GeT_DaYs_DiFfErEnCe(LoAn.getDueDate());
-			long daysOverDue = Calendar.getInstance().getDaysDifference(LoAn.getDueDate()); 	//Method name GeT_DaYs_DiFfErEnCe and variable name DaYs_OvEr_DuE were changed to getDaysDifference and daysOverDue
+			Date loanDueDate = loan.getDueDate();  	 	//passed method as an argument was assigned to variable before passing
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loanDueDate); 	//Method name GeT_DaYs_DiFfErEnCe and variable name DaYs_OvEr_DuE were changed to getDaysDifference and daysOverDue
 			//double fInE = daysOverDue * FINE_PER_DAY;
 			double fine = daysOverDue * FINE_PER_DAY; 	//variable fInE was changed to fine
 			return fine;
@@ -280,7 +317,7 @@ public class Library implements Serializable {
 		
 		member.dischargeLoan(currentLoan);
 		//book.ReTuRn(isDamaged);
-		book.return(isDamaged); 	//Method name ReTuRn was changed to return
+		book.returnBook(isDamaged); 	//Method name ReTuRn was changed to returnBook to avoid conflicting with key words
 		if (isDamaged) {
 			member.addFine(DAMAGE_FEE);
 			damagedBooks.put(book.getId(), book);
@@ -294,19 +331,21 @@ public class Library implements Serializable {
 	//public void cHeCk_currentLoans() {
 	public void checkCurrentLoans() { 		//Method name cHeCk_currentLoans was changed to checkCurrentLoans
 		//for (Loan lOaN : currentLoans.values())
-		for (Loan loan : currentLoans.values()) 	//variable name lOaN was changed to loan
 			//loan.cHeCk_OvEr_DuE();
-			loan.checkOverDue(); 	//Method name cHeCk_OvEr_DuE was changed to checkOverDue
-				
+		for (Loan loan : currentLoans.values()){ 		//variable name lOaN was changed to loan
+			loan.checkOverDue(); 		//Method name cHeCk_OvEr_DuE was changed to checkOverDue
+		}  		//for loop without curly brackets were modified to with curly brackets
 	}
 
 
 	//public void RePaIr_BoOk(Book cUrReNt_BoOk) {
+		//if (damagedBooks.containsKey(currentBookId))
 	public void repairBook(Book currentBook) { 	//Method name RePaIr_BoOk and variavle name cUrReNt_BoOk were  changed to repairBook and currentBook
-		if (damagedBooks.containsKey(currentBook.getId())) {
+		int currentBookId = currentBook.getId();
+		if (damagedBooks.containsKey(currentBookId)) { 		//passed method as an argument was assigned to variable before passing
 			//currentBook.RePaIr();
 			currentBook.repair(); 		//Method name RePaIr was changed to repair
-			damagedBooks.remove(currentBook.getId());
+			damagedBooks.remove(currentBookId); 		//passed method as an argument was assigned to variable before passing
 		}
 		else 
 			throw new RuntimeException("Library: repairBook: book is not damaged");
