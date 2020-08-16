@@ -97,13 +97,15 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized void SaVe() {
+	//public static synchronized void SaVe() {
+	public static synchronized void save() { 	//Method name SaVe was changed to save
 		if (self != null) {
-			self.loanDate = Calendar.getInstance().gEt_DaTe();
-			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-				LiBrArY_fIlE.writeObject(self);
-				LiBrArY_fIlE.flush();
-				LiBrArY_fIlE.close();	
+			//self.loanDate = Calendar.getInstance().gEt_DaTe();
+			self.loanDate = Calendar.getInstance().gEt_DaTe(); 	//Method name gEt_DaTe was changed to getDate
+			try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+				libraryFile.writeObject(self);
+				libraryFile.flush();
+				libraryFile.close();	
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -112,75 +114,89 @@ public class Library implements Serializable {
 	}
 
 	
-	public int gEt_BoOkId() {
+	//public int gEt_BoOkId() {
+	public int getBookId() { 	//Method name gEt_BoOkId was changed to getBookId
 		return bookId;
 	}
 	
 	
-	public int gEt_memberId() {
+	//public int gEt_memberId() {
+	public int getMemberId() { 	//Method name gEt_memberId was changed to getMemberId
 		return memberId;
 	}
 	
 	
-	private int gEt_NeXt_bookId() {
+	//private int gEt_NeXt_bookId() {
+	private int getNextBookId() { 	//Method name gEt_NeXt_bookId was changed to getNextBookId
 		return bookId++;
 	}
 
 	
-	private int gEt_NeXt_memberId() {
+	//private int gEt_NeXt_memberId() {
+	private int getNextMemberId() { 	 //Method name gEt_NeXt_memberId was changed to getNextMemberId
 		return memberId++;
 	}
 
 	
-	private int gEt_NeXt_loanId() {
+	//private int gEt_NeXt_loanId() {
+	private int getNextLoanId() { 	//Method name gEt_NeXt_loanId was changed to getNextLoanId
 		return loanId++;
 	}
 
 	
-	public List<Member> lIsT_members() {		
+	//public List<Member> lIsT_members() {
+	public List<Member> listMembers() { 	//Method name lIsT_members was changed to listMembers
 		return new ArrayList<Member>(members.values()); 
 	}
 
 
-	public List<Book> lIsT_BoOkS() {		
+	//public List<Book> lIsT_BoOkS() {
+	public List<Book> listBooks() { 	//Method name lIsT_BoOkS was changed to listBooks
 		return new ArrayList<Book>(catalog.values()); 
 	}
 
 
-	public List<Loan> lISt_currentLoans() {
+	//public List<Loan> lISt_currentLoans() {
+	public List<Loan> listCurrentLoans() { 	//Method name lISt_currentLoans was changed to listCurrentLoans
 		return new ArrayList<Loan>(currentLoans.values());
 	}
 
 
-	public Member aDd_MeMbEr(String lastName, String firstName, String email, int phoneNo) {		
+	//public Member aDd_MeMbEr(String lastName, String firstName, String email, int phoneNo) {
+	public Member addMember(String lastName, String firstName, String email, int phoneNo) { 	//Method name aDd_MeMbEr was changed to addMember
 		Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_memberId());
-		members.put(member.GeT_ID(), member);		
+		//members.put(member.GeT_ID(), member);
+		members.put(member.getId(), member); 	//Method name GeT_ID was changed to getId
 		return member;
 	}
 
 	
-	public Book aDd_BoOk(String a, String t, String c) {		
-		Book b = new Book(a, t, c, gEt_NeXt_bookId());
-		catalog.put(b.gEtId(), b);		
+	//public Book aDd_BoOk(String a, String t, String c) {
+	public Book addBook(String a, String t, String c) { 	//Method name aDd_BoOk was changed to addBook
+		Book b = new Book(a, t, c, getNextBookId());
+		catalog.put(b.getId(), b);		
 		return b;
 	}
 
 	
-	public Member gEt_MeMbEr(int memberId) {
+	//public Member gEt_MeMbEr(int memberId) {
+	public Member getMember(int memberId) { 	//Method name gEt_MeMbEr was changed to getMember
 		if (members.containsKey(memberId)) 
 			return members.get(memberId);
 		return null;
 	}
 
 	
-	public Book gEt_BoOk(int bookId) {
+	//public Book gEt_BoOk(int bookId) {
+	public Book getBook(int bookId) { 	 	//Method name gEt_BoOk was changed to getBook
 		if (catalog.containsKey(bookId)) 
 			return catalog.get(bookId);		
 		return null;
 	}
 
 	
-	public int gEt_LoAn_LiMiT() {
+	//public int gEt_LoAn_LiMiT() {
+	public int getLoanLimit() { 	 	//Method name gEt_LoAn_LiMiT was changed to getLoanLimit
 		return LOAN_LIMIT;
 	}
 
@@ -211,7 +227,7 @@ public class Library implements Serializable {
 		member.TaKe_OuT_LoAn(loan);
 		book.BoRrOw();
 		loans.put(loan.GeT_Id(), loan);
-		currentLoans.put(book.gEtId(), loan);
+		currentLoans.put(book.getId(), loan);
 		return loan;
 	}
 	
@@ -235,8 +251,8 @@ public class Library implements Serializable {
 
 
 	public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
-		Member mEmBeR = cUrReNt_LoAn.GeT_MeMbEr();
-		Book bOoK  = cUrReNt_LoAn.GeT_BoOk();
+		Member mEmBeR = cUrReNt_LoAn.getMember();
+		Book bOoK  = cUrReNt_LoAn.getBook();
 		
 		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
 		mEmBeR.AdD_FiNe(oVeR_DuE_FiNe);	
@@ -245,10 +261,10 @@ public class Library implements Serializable {
 		bOoK.ReTuRn(iS_dAmAgEd);
 		if (iS_dAmAgEd) {
 			mEmBeR.AdD_FiNe(DAMAGE_FEE);
-			damagedBooks.put(bOoK.gEtId(), bOoK);
+			damagedBooks.put(bOoK.getId(), bOoK);
 		}
 		cUrReNt_LoAn.DiScHaRgE();
-		currentLoans.remove(bOoK.gEtId());
+		currentLoans.remove(bOoK.getId());
 	}
 
 
@@ -260,9 +276,9 @@ public class Library implements Serializable {
 
 
 	public void RePaIr_BoOk(Book cUrReNt_BoOk) {
-		if (damagedBooks.containsKey(cUrReNt_BoOk.gEtId())) {
+		if (damagedBooks.containsKey(cUrReNt_BoOk.getId())) {
 			cUrReNt_BoOk.RePaIr();
-			damagedBooks.remove(cUrReNt_BoOk.gEtId());
+			damagedBooks.remove(cUrReNt_BoOk.getId());
 		}
 		else 
 			throw new RuntimeException("Library: repairBook: book is not damaged");
