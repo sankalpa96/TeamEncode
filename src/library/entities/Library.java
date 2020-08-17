@@ -257,11 +257,11 @@ public class Library implements Serializable {
 	
 	//public Loan iSsUe_LoAn(Book book, Member member) {
 	public Loan issueLoan(Book book, Member member) { 		//Method name iSsUe_LoAn was changed to issueLoan
-		//Date dueDate = Calendar.getInstance().gEt_DuE_DaTe(LOAN_PERIOD);
-		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD); 	//Method name gEt_DuE_DaTe was changed to getDueDate
-		//Loan loan = new Loan(gEt_NeXt_loanId(), book, member, dueDate);
+		//Date duedate = Calendar.getInstance().gEt_DuE_DaTe(LOAN_PERIOD);
+		Date duedate = Calendar.getInstance().getDuedate(LOAN_PERIOD); 	//Method name gEt_DuE_DaTe was changed to getDuedate
+		//Loan loan = new Loan(gEt_NeXt_loanId(), book, member, duedate);
 		int nextLoanId = getNextLoanId();
-		Loan loan = new Loan(nextLoanId, book, member, dueDate); 	//Method name gEt_NeXt_loanId was changed to getNextLoanId and passed method as an argument was assigned to variable before passing
+		Loan loan = new Loan(nextLoanId, book, member, duedate); 	//Method name gEt_NeXt_loanId was changed to getNextLoanId and passed method as an argument was assigned to variable before passing
 		//member.TaKe_OuT_LoAn(loan);
 		member.takeOutLoan(loan); 	//Method name TaKe_OuT_LoAn was changed to takeOutLoan
 		//book.BoRrOw();
@@ -292,9 +292,9 @@ public class Library implements Serializable {
 	//public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
 	public double calculateOverDueFine(Loan loan) { 		//Method name CaLcUlAtE_OvEr_DuE_FiNe and variable name LoAn were changed to calculateOverDueFine and loan
 		if (LoAn.isOverDue()) {
-			//long DaYs_OvEr_DuE = Calendar.getInstance().GeT_DaYs_DiFfErEnCe(LoAn.getDueDate());
-			Date loanDueDate = loan.getDueDate();  	 	//passed method as an argument was assigned to variable before passing
-			long daysOverDue = Calendar.getInstance().getDaysDifference(loanDueDate); 	//Method name GeT_DaYs_DiFfErEnCe and variable name DaYs_OvEr_DuE were changed to getDaysDifference and daysOverDue
+			//long DaYs_OvEr_DuE = Calendar.getInstance().GeT_DaYs_DiFfErEnCe(LoAn.getDuedate());
+			Date loanDuedate = loan.getDuedate();  	 	//passed method as an argument was assigned to variable before passing
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loanDuedate); 	//Method name GeT_DaYs_DiFfErEnCe and variable name DaYs_OvEr_DuE were changed to getDaysDifference and daysOverDue
 			//double fInE = daysOverDue * FINE_PER_DAY;
 			double fine = daysOverDue * FINE_PER_DAY; 	//variable fInE was changed to fine
 			return fine;
