@@ -5,17 +5,13 @@ import java.io.Serializable;
 // Reviewer : Rovidu
 // Mediator : Sankalpa
 
-// Change 1 - change tItLe to title
-// Change 2 - change AuThOr to author
-// Change 3 - change CALLNO to callNo
-// Change 4 - change iD to id
-// Change 5 - change enum name sTaTe to State
-// Change 6 - change enum object name StAtE to state
-// Change 7 - change function names gEtId & gEtTiTlE to getId & getTitle
-// Change 8 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
-// Change 9	- change function names BoRrOw, ReTuRn, RePaIr
-// Change 10 - change parameter DaMaGeD to damaged
-// Change 11 - Redo if conditions in proper format using curly brackets
+// Change 1 - change variable names tItLe, AuThOr, CALLNO, iD
+// Change 2 - change enum name sTaTe and enum object name StAtE
+// Change 3 - change function names gEtId & gEtTiTlE to getId & getTitle
+// Change 4 - change function names iS_AvAiLaBlE, iS_On_LoAn, iS_DaMaGeD
+// Change 5	- change function names BoRrOw, ReTuRn, RePaIr
+// Change 6 - change parameter DaMaGeD to damaged
+// Change 7 - Redo if conditions in proper format using curly brackets
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
@@ -36,7 +32,7 @@ public class Book implements Serializable {
 	
 	
 	public Book(String author, String title, String callNo, int id) {
-		//this.AuThOr = author;
+	    //this.AuThOr = author;
 		this.author = author;	// change AuThOr to author
 		//this.tItLe = title;
 		this.title = title;		// change tItLe to title
