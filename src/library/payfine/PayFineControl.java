@@ -14,7 +14,7 @@ public class PayFineControl { // Renamed class name
 //	private enum cOnTrOl_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // Changed enum cOnTrOl_sTaTe to ControlState by author
 //	private cOnTrOl_sTaTe StAtE;
-	private ControlState StAtE; // Changed cOnTrOl_sTaTe to ControlState
+	private ControlState state; // Changed cOnTrOl_sTaTe to ControlState & StAtE to state
 	
 //	private Library LiBrArY;
 	private Library library; // Changed LiBrArY to library by author
