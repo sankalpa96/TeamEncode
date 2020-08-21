@@ -16,7 +16,7 @@ public class Member implements Serializable {
 	private String lastName; //variable name LaSt_NaMe was changed to lastName	
 	
 	//private String FiRsT_NaMe;
-	private String firstName; //variable name FiRsT_NaMe was changed to lastName
+	private String firstName; //variable name FiRsT_NaMe was changed to firstame
 	
 	//private String EmAiL_AdDrEsS;
 	private String emailAddress; //variable name EmAiL_AdDrEsS was changed to emailAddress
@@ -35,11 +35,11 @@ public class Member implements Serializable {
 
 	
 	public Member(String lastName, String firstName, String emailAddress, int phoneNumber, int memberId) {
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.emailAddress = emailAddress;
-		this.phoneNumber = phoneNumber;
-		this.memberId = memberId;
+		this.lastName = lastName; //variable name LaSt_NaMe was changed to lastName	
+		this.firstName = firstName; //variable name FiRsT_NaMe was changed to firstame
+		this.emailAddress = emailAddress; //variable name EmAiL_AdDrEsS was changed to emailAddress
+		this.phoneNumber = phoneNumber; //variable name PhOnE_NuMbEr was changed to phoneNumber
+		this.memberId = memberId;//variable name MeMbEr_Id was changed to memberId
 		
 		this.currentLoans = new HashMap<>();
 	}
@@ -53,7 +53,7 @@ public class Member implements Serializable {
 		  .append("  Email: ").append(emailAddress).append("\n")
 		  .append("  Phone: ").append(phoneNumber)
 		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", finesOwing))
+		  .append(String.format("  Fines Owed :  $%.2f", finesOwing))//variable name FiNeS_OwInG was changed to finesOwing
 		  .append("\n");
 		
 		//for (Loan LoAn : currentLoans.values()) {
