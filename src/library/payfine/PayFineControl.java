@@ -22,13 +22,15 @@ public class PayFineControl { // Renamed class name
 	private Member member; // Changed MeMbEr to member by author
 
 
-	public pAY_fINE_cONTROL() {
+//	public pAY_fINE_cONTROL() {
+	public PayFineControl() { // Changed pAY_fINE_cONTROL to PayFineControl by author
 		this.library = Library.GeTiNsTaNcE();
 		StAtE = cOnTrOl_sTaTe.INITIALISED;
 	}
 	
 	
-	public void SeT_uI(PayFineUI uI) {
+//	public void SeT_uI(PayFineUI uI) {
+	public void setUi(PayFineUI uI) { // Changed SeT_uI to setUi by author
 		if (!StAtE.equals(cOnTrOl_sTaTe.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
@@ -38,7 +40,8 @@ public class PayFineControl { // Renamed class name
 	}
 
 
-	public void CaRd_sWiPeD(int member_Id) {
+//	public void CaRd_sWiPeD(int member_Id) {
+	public void cardSwiped(int member_Id) { // Changed CaRd_sWiPeD to cardSwiped by author
 		if (!StAtE.equals(cOnTrOl_sTaTe.READY)) 
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 			
@@ -54,13 +57,15 @@ public class PayFineControl { // Renamed class name
 	}
 	
 	
-	public void CaNcEl() {
+//	public void CaNcEl() {
+	public void cancel() { // Changed CaNcEl to cancel by author
 		ui.SeT_StAtE(PayFineUI.uI_sTaTe.CANCELLED);
 		StAtE = cOnTrOl_sTaTe.CANCELLED;
 	}
 
 
-	public double PaY_FiNe(double AmOuNt) {
+//	public double PaY_FiNe(double AmOuNt) {
+	public double payFine(double AmOuNt) { // Changed PaY_FiNe to payFine by author
 		if (!StAtE.equals(cOnTrOl_sTaTe.PAYING)) 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 			
