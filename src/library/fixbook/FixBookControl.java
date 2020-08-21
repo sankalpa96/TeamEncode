@@ -3,13 +3,13 @@ import library.entities.Book;
 import library.entities.Library;
 
 //public class fIX_bOOK_cONTROL {
-public class FixBookControl { //change class name fIX_bOOK_cONTROL to FixBookControl
+public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookControl
 	
 	private FixBookUI Ui;
 	//private enum CoNtRoL_StAtE { INITIALISED, READY, FIXING };
-	private enum controlState{ INITIALISED, READY, FIXING }; // changed enum name CoNtRoL_StAtE to controlState
+	private enum controlState{ INITIALISED, READY, FIXING }; // changedd enum name CoNtRoL_StAtE to controlState
 	//private CoNtRoL_StAtE StAtE;
-	private controlState StAtE;
+	private controlState state; //changed variable StAtE to state
 	
 	private Library LiBrArY;
 	private Book CuRrEnT_BoOk;
@@ -18,25 +18,25 @@ public class FixBookControl { //change class name fIX_bOOK_cONTROL to FixBookCon
 	public FixBookControl() {
 		this.LiBrArY = Library.GeTiNsTaNcE();
 		//StAtE = CoNtRoL_StAtE.INITIALISED;
-		StAtE = controlState.INITIALISED;
+		state = controlState.INITIALISED; //changed variable StAtE to state
 	}
 	
 	
 	public void SeT_Ui(FixBookUI ui) {
 		//if (!StAtE.equals(CoNtRoL_StAtE.INITIALISED))
-		if (!StAtE.equals(controlState.INITIALISED))
+		if (!state.equals(controlState.INITIALISED)) //changed variable StAtE to state
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 			
 		this.Ui = ui;
 		ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
 		//StAtE = CoNtRoL_StAtE.READY;	
-		StAtE = controlState.READY;			
+		state = controlState.READY;	//changed variable StAtE to state		
 	}
 
 
 	public void BoOk_ScAnNeD(int BoOkId) {
 		//if (!StAtE.equals(CoNtRoL_StAtE.READY))
-		if (!StAtE.equals(controlState.READY))
+		if (!state.equals(controlState.READY)) //changed variable StAtE to state
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
 		CuRrEnT_BoOk = LiBrArY.gEt_BoOk(BoOkId);
@@ -52,13 +52,13 @@ public class FixBookControl { //change class name fIX_bOOK_cONTROL to FixBookCon
 		Ui.dIsPlAy(CuRrEnT_BoOk.toString());
 		Ui.SeT_StAtE(FixBookUI.uI_sTaTe.FIXING);
 		//StAtE = CoNtRoL_StAtE.FIXING;		
-		StAtE = controlState.FIXING;		
+		state = controlState.FIXING; //changed variable StAtE to state		
 	}
 
 
 	public void FiX_BoOk(boolean mUsT_FiX) {
 		//if (!StAtE.equals(CoNtRoL_StAtE.FIXING))
-        if (!StAtE.equals(controlState.FIXING))			
+        if (!state.equals(controlState.FIXING))	//changed variable StAtE to state		
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 			
 		if (mUsT_FiX) 
@@ -67,7 +67,7 @@ public class FixBookControl { //change class name fIX_bOOK_cONTROL to FixBookCon
 		CuRrEnT_BoOk = null;
 		Ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
 		//StAtE = CoNtRoL_StAtE.READY;
-		StAtE = controlState.READY;
+		state = controlState.READY;//changed variable StAtE to state
 	}
 
 	
