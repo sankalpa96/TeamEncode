@@ -3,12 +3,19 @@ import library.entities.Book;
 import library.entities.Library;
 import library.entities.Loan;
 
+// Author - Poornima
+// Reviewer - Rovidu
+// Mediator - Sankalpa
+
 // Change 1 - change the class name and file name
 // Change 2 - change both ReturnBookUI type object Ui and parameter uI to ui
 // Change 3 - change enum name and enum variable name
 // Change 4 - change Library and Loan object names
-// Change 5 - change function names rETURN_bOOK_cONTROL, GeTiNsTaNcE, sEt_uI
+// Change 5 - change constructor name rETURN_bOOK_cONTROL and function names GeTiNsTaNcE, sEt_uI
 // Change 6 - change sEt_sTaTe function and uI_sTaTe enum from ReturnBookUI class
+// Change 7 - change function name bOoK_sCaNnEd, parameter bOoK_iD and object name cUrReNt_bOoK
+//			- change function name gEt_BoOk, DiSpLaY, iS_On_LoAn, GeT_LoAn_By_BoOkId, Is_OvEr_DuE
+//			- change variable name Over_Due_Fine
 
 // public class rETURN_bOOK_cONTROL{
 public class ReturnBookControl{
@@ -25,7 +32,7 @@ public class ReturnBookControl{
 	private Loan currentLoan;	//change CurrENT_loan to currentLoan
 	
 	//public rETURN_bOOK_cONTROL() {
-	public returnBookControl() {	// change rETURN_bOOK_cONTROL to returnBookControl
+	public ReturnBookControl() {	// change rETURN_bOOK_cONTROL to ReturnBookControl
 		//this.lIbRaRy = Library.GeTiNsTaNcE();
 		this.library = Library.getInstance();	//change lIbRaRy, GeTiNsTaNcE to library and getInstance
 		//sTaTe = cOnTrOl_sTaTe.INITIALISED;
@@ -46,39 +53,43 @@ public class ReturnBookControl{
 		state = ControlState.READY;		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 	}
 
-
-	public void bOoK_sCaNnEd(int bOoK_iD) {
+	//public void bOoK_sCaNnEd(int bOoK_iD) {
+	public void bookScanned(int bookId) {		//change bOoK_sCaNnEd, bOoK_iD to bookScanned, bookId
 		//if (!sTaTe.equals(cOnTrOl_sTaTe.READY))
 		if (!state.equals(ControlState.READY)) 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		
 		//Book cUrReNt_bOoK = lIbRaRy.gEt_BoOk(bOoK_iD);
-		Book cUrReNt_bOoK = library.gEt_BoOk(bOoK_iD);	//change lIbRaRy to library
+		Book currentBook = library.getBook(bookId);	//change lIbRaRy, cUrReNt_bOoK, gEt_BoOk, bOoK_iD to library, currentBook, getBook bookId
 		
-		if (cUrReNt_bOoK == null) {
+		//if (cUrReNt_bOoK == null) {
+		if (currentBook == null) {		// change cUrReNt_bOoK to currentBook
 			//Ui.DiSpLaY("Invalid Book Id");
-			ui.DiSpLaY("Invalid Book Id");		//change Ui to ui
+			ui.display("Invalid Book Id");		//change Ui to ui, DiSpLaY to display
 			return;
 		}
-		if (!cUrReNt_bOoK.iS_On_LoAn()) {
+		
+		//if (!cUrReNt_bOoK.iS_On_LoAn()) {
+		if (!currentBook.isOnLoan()) {		// change cUrReNt_bOoK, iS_On_LoAn to currentBook, isOnLoan
 			//Ui.DiSpLaY("Book has not been borrowed");
-			ui.DiSpLaY("Book has not been borrowed");		//change Ui to ui
+			ui.display("Book has not been borrowed");		//change Ui to ui, DiSpLaY to display
 			return;
 		}	
 		//CurrENT_loan = lIbRaRy.GeT_LoAn_By_BoOkId(bOoK_iD);			
-		currentLoan = library.GeT_LoAn_By_BoOkId(bOoK_iD);		//change CurrENT_loan, lIbRaRy to currentLoan, library
-		double Over_Due_Fine = 0.0;
+		currentLoan = library.getLoanByBookId(bOoK_iD);		//change CurrENT_loan, lIbRaRy, GeT_LoAn_By_BoOkId, bOoK_iD to currentLoan, library, getLoanByBookId, bookId
+		//double Over_Due_Fine = 0.0;
+		double overdueFine = 0.0;		//change Over_Due_Fine to overdueFine
 		//if (CurrENT_loan.Is_OvEr_DuE())
-		if (currentLoan.Is_OvEr_DuE()) 	//change CurrENT_loan to currentLoan
+		if (currentLoan.isOverdue()) 	//change CurrENT_loan, Is_OvEr_DuE to currentLoan isOverdue
 			//Over_Due_Fine = lIbRaRy.CaLcUlAtE_OvEr_DuE_FiNe(CurrENT_loan);
-			Over_Due_Fine = library.CaLcUlAtE_OvEr_DuE_FiNe(currentLoan);	//change CurrENT_loan, lIbRaRy to currentLoan, library
+			overdueFine = library.CaLcUlAtE_OvEr_DuE_FiNe(currentLoan);	//change CurrENT_loan, Over_Due_Fine, lIbRaRy to currentLoan, overdueFine, library
 		
 		//Ui.DiSpLaY("Inspecting");
-		ui.DiSpLaY("Inspecting");				//change Ui to ui
+		ui.display("Inspecting");				//change Ui to ui, DiSpLaY to display
 		//Ui.DiSpLaY(cUrReNt_bOoK.toString());
-		ui.DiSpLaY(cUrReNt_bOoK.toString());	//change Ui to ui
+		ui.display(currentBook.toString());	//change Ui to ui, DiSpLaY to display
 		//Ui.DiSpLaY(CurrENT_loan.toString());
-		ui.DiSpLaY(currentLoan.toString());	//change Ui, CurrENT_loan to ui, currentLoan
+		ui.display(currentLoan.toString());	//change Ui, CurrENT_loan, DiSpLaY to ui, currentLoan, display
 		
 		//if (CurrENT_loan.Is_OvEr_DuE()) 
 		if (currentLoan.Is_OvEr_DuE()) 	//change CurrENT_loan to currentLoan
