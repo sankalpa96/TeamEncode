@@ -4,9 +4,11 @@ import library.entities.Library;
 import library.entities.Loan;
 
 // Change 1 - change the class name and file name
-// Change 2 - change variable Ui and parameter uI to ui
+// Change 2 - change both ReturnBookUI type object Ui and parameter uI to ui
 // Change 3 - change enum name and enum variable name
 // Change 4 - change Library and Loan object names
+// Change 5 - change function names rETURN_bOOK_cONTROL, GeTiNsTaNcE, sEt_uI
+// Change 6 - change sEt_sTaTe function and uI_sTaTe enum from ReturnBookUI class
 
 // public class rETURN_bOOK_cONTROL{
 public class ReturnBookControl{
@@ -22,23 +24,24 @@ public class ReturnBookControl{
 	//private Loan CurrENT_loan;
 	private Loan currentLoan;	//change CurrENT_loan to currentLoan
 	
-
-	public rETURN_bOOK_cONTROL() {
+	//public rETURN_bOOK_cONTROL() {
+	public returnBookControl() {	// change rETURN_bOOK_cONTROL to returnBookControl
 		//this.lIbRaRy = Library.GeTiNsTaNcE();
-		this.library = Library.GeTiNsTaNcE();	//change lIbRaRy to library
+		this.library = Library.getInstance();	//change lIbRaRy, GeTiNsTaNcE to library and getInstance
 		//sTaTe = cOnTrOl_sTaTe.INITIALISED;
 		state = ControlState.INITIALISED;		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 	}
 	
 	//public void sEt_uI(ReturnBookUI uI) {
-	public void sEt_uI(ReturnBookUI ui) {		//change uI to ui
+	public void setUI(ReturnBookUI ui) {		//change uI, sEt_uI to ui, setUI
+		//if (!sTaTe.equals(cOnTrOl_sTaTe.INITIALISED))
 		if (!state.equals(ControlState.INITIALISED)) 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		
 		//this.Ui = uI;
 		this.ui = ui;		//change Ui and uI to ui
 		//uI.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);
-		ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);	//change uI to ui
+		ui.setState(ReturnBookUI.UiState.READY);	//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState
 		//sTaTe = cOnTrOl_sTaTe.READY;
 		state = ControlState.READY;		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 	}
@@ -83,7 +86,7 @@ public class ReturnBookControl{
 			ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));	//change Ui to ui
 		
 		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.INSPECTING);
-		ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.INSPECTING);		//change Ui to ui
+		ui.setState(ReturnBookUI.UiState.INSPECTING);		//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState
 		//sTaTe = cOnTrOl_sTaTe.INSPECTING;
 		state = ControlState.INSPECTING;		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 	}
@@ -94,8 +97,8 @@ public class ReturnBookControl{
 		if (!state.equals(ControlState.READY)) 		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		
-		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.COMPLETED);		
-		ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.COMPLETED);		//change Ui to ui	
+		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.COMPLETED);	
+		ui.setState(ReturnBookUI.UiState.COMPLETED);		//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState	
 	}
 
 
@@ -109,7 +112,7 @@ public class ReturnBookControl{
 		//CurrENT_loan = null;
 		currentLoan = null;	//change CurrENT_loan to currentLoan
 		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);
-		ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);		//change Ui to ui
+		ui.setState(ReturnBookUI.UiState.READY);		//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState
 		//sTaTe = cOnTrOl_sTaTe.READY;
 		state = ControlState.READY;		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 	}
