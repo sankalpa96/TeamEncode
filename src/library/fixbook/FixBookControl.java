@@ -11,12 +11,14 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 	//private CoNtRoL_StAtE StAtE;
 	private controlState state; //changed variable StAtE to state
 	
-	private Library LiBrArY;
+	//private Library LiBrArY;
+	private Library library; //changed variable LiBrArY to library
 	private Book CuRrEnT_BoOk;
 
 
 	public FixBookControl() {
-		this.LiBrArY = Library.GeTiNsTaNcE();
+		//this.LiBrArY = Library.GeTiNsTaNcE();
+		this.library = Library.GeTiNsTaNcE(); //changed variable LiBrArY to library
 		//StAtE = CoNtRoL_StAtE.INITIALISED;
 		state = controlState.INITIALISED; //changed variable StAtE to state
 	}
@@ -39,7 +41,8 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 		if (!state.equals(controlState.READY)) //changed variable StAtE to state
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
-		CuRrEnT_BoOk = LiBrArY.gEt_BoOk(BoOkId);
+		//CuRrEnT_BoOk = LiBrArY.gEt_BoOk(BoOkId);
+		CuRrEnT_BoOk = library.gEt_BoOk(BoOkId); //changed variable LiBrArY to library
 		
 		if (CuRrEnT_BoOk == null) {
 			Ui.dIsPlAy("Invalid bookId");
@@ -62,7 +65,8 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 			
 		if (mUsT_FiX) 
-			LiBrArY.RePaIr_BoOk(CuRrEnT_BoOk);
+			//LiBrArY.RePaIr_BoOk(CuRrEnT_BoOk);
+			library.RePaIr_BoOk(CuRrEnT_BoOk); //changed variable LiBrArY to library
 		
 		CuRrEnT_BoOk = null;
 		Ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
