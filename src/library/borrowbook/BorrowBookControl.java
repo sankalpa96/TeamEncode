@@ -106,7 +106,9 @@ public class BorrowBookControl { 	//class name bORROW_bOOK_cONTROL was changed t
 		// for (Book B : pendingList) 
 			// ui.display(B.toString());
 		for (Book B : pendingList){ 	//curly brackets were add to be accordance with style guidelines
-			ui.display(B.toString());
+			//ui.display(B.toString());
+			String stringB = B.toString();
+			ui.display(stringB); 	//Method's return value was assigned to a variable before passing as an argument
 		}
 			
 		
@@ -120,13 +122,22 @@ public class BorrowBookControl { 	//class name bORROW_bOOK_cONTROL was changed t
 	
 	
 	public void complete() {
-		if (pendingList.size() == 0) 
-			CaNcEl();
+		// if (pendingList.size() == 0) 
+			// cancel();
+		if (pendingList.size() == 0){ 	//curly brackets were add to be accordance with style guidelines
+			cancel(); 	//method name CaNcEl(); was changed to cancel()
+		}
+			
 		
 		else {
 			ui.display("\nFinal Borrowing List");
-			for (Book book : pendingList) 
-				ui.display(book.toString());
+			// for (Book book : pendingList) 
+				// ui.display(book.toString());
+			for (Book book : pendingList){ 		//curly brackets were add to be accordance with style guidelines
+				String stringBook = book.toString()
+				ui.display(book.toString()); 	////Method's return value was assigned to a variable before passing as an argument
+			} 
+				
 			
 			completedList = new ArrayList<Loan>();
 			ui.setState(BorrowBookUI.UIState.FINALISING);
@@ -152,7 +163,7 @@ public class BorrowBookControl { 	//class name bORROW_bOOK_cONTROL was changed t
 	}
 
 	
-	public void CaNcEl() {
+	public void cancel() {
 		ui.setState(BorrowBookUI.UIState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
