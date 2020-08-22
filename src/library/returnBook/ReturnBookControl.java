@@ -18,7 +18,7 @@ import library.entities.Loan;
 //			- change variable name Over_Due_Fine
 // Change 8 - change function names CaLcUlAtE_OvEr_DuE_FiNe, sCaNnInG_cOmPlEtE, dIsChArGe_lOaN
 //			- change parameter iS_dAmAgEd
-
+// Change 9 - Add curly brackets to change if blocks to a proper format
 
 // public class rETURN_bOOK_cONTROL{
 public class ReturnBookControl{
@@ -45,8 +45,10 @@ public class ReturnBookControl{
 	//public void sEt_uI(ReturnBookUI uI) {
 	public void setUI(ReturnBookUI ui) {		//change uI, sEt_uI to ui, setUI
 		//if (!sTaTe.equals(cOnTrOl_sTaTe.INITIALISED))
-		if (!state.equals(ControlState.INITIALISED)) 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
+		//Add curly brackets to if condition 
+		if (!state.equals(ControlState.INITIALISED)) {	//change cOnTrOl_sTaTe, sTaTe to ControlState, state
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
+		}
 		
 		//this.Ui = uI;
 		this.ui = ui;		//change Ui and uI to ui
@@ -59,9 +61,11 @@ public class ReturnBookControl{
 	//public void bOoK_sCaNnEd(int bOoK_iD) {
 	public void bookScanned(int bookId) {		//change bOoK_sCaNnEd, bOoK_iD to bookScanned, bookId
 		//if (!sTaTe.equals(cOnTrOl_sTaTe.READY))
-		if (!state.equals(ControlState.READY)) 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
+		//Add curly brackets to if condition
+		if (!state.equals(ControlState.READY)){ 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
-		
+		}
+
 		//Book cUrReNt_bOoK = lIbRaRy.gEt_BoOk(bOoK_iD);
 		Book currentBook = library.getBook(bookId);	//change lIbRaRy, cUrReNt_bOoK, gEt_BoOk, bOoK_iD to library, currentBook, getBook bookId
 		
@@ -78,14 +82,17 @@ public class ReturnBookControl{
 			ui.display("Book has not been borrowed");		//change Ui to ui, DiSpLaY to display
 			return;
 		}	
+		
 		//CurrENT_loan = lIbRaRy.GeT_LoAn_By_BoOkId(bOoK_iD);			
 		currentLoan = library.getLoanByBookId(bookId);		//change CurrENT_loan, lIbRaRy, GeT_LoAn_By_BoOkId, bOoK_iD to currentLoan, library, getLoanByBookId, bookId
 		//double Over_Due_Fine = 0.0;
 		double overdueFine = 0.0;		//change Over_Due_Fine to overdueFine
 		//if (CurrENT_loan.Is_OvEr_DuE())
-		if (currentLoan.isOverdue()) 	//change CurrENT_loan, Is_OvEr_DuE to currentLoan isOverdue
+		//Add curly brackets to if condition
+		if (currentLoan.isOverdue()){ 	//change CurrENT_loan, Is_OvEr_DuE to currentLoan isOverdue
 			//Over_Due_Fine = lIbRaRy.CaLcUlAtE_OvEr_DuE_FiNe(CurrENT_loan);
 			overdueFine = library.calculateOverdueFine(currentLoan);	//change CurrENT_loan, Over_Due_Fine, lIbRaRy, CaLcUlAtE_OvEr_DuE_FiNe to currentLoan, overdueFine, library, calculateOverdueFine
+		}
 		
 		//Ui.DiSpLaY("Inspecting");
 		ui.display("Inspecting");				//change Ui to ui, DiSpLaY to display
@@ -95,9 +102,11 @@ public class ReturnBookControl{
 		ui.display(currentLoan.toString());	//change Ui, CurrENT_loan, DiSpLaY to ui, currentLoan, display
 		
 		//if (CurrENT_loan.Is_OvEr_DuE()) 
-		if (currentLoan.isOverdue()) 	//change CurrENT_loan, Is_OvEr_DuE to currentLoan, isOverdue
+		//Add curly brackets to if condition
+		if (currentLoan.isOverdue()) {	//change CurrENT_loan, Is_OvEr_DuE to currentLoan, isOverdue
 			//Ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 			ui.display(String.format("\nOverdue fine : $%.2f", overdueFine));	//change Ui to ui, DiSpLaY to display, Over_Due_Fine to overdueFine
+		}
 		
 		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.INSPECTING);
 		ui.setState(ReturnBookUI.UiState.INSPECTING);		//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState
@@ -108,8 +117,10 @@ public class ReturnBookControl{
 	//public void sCaNnInG_cOmPlEtE() {
 	public void scanningComplete() {	//change sCaNnInG_cOmPlEtE to scanningComplete
 		//if (!sTaTe.equals(cOnTrOl_sTaTe.READY)) 
-		if (!state.equals(ControlState.READY)) 		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
+		//Add curly brackets to if condition
+		if (!state.equals(ControlState.READY)) {		//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
+		}
 		
 		//Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.COMPLETED);	
 		ui.setState(ReturnBookUI.UiState.COMPLETED);		//change uI, sEt_sTaTe, uI_sTaTe (enum) to ui, setState, UiState	
@@ -118,8 +129,10 @@ public class ReturnBookControl{
 	//public void dIsChArGe_lOaN(boolean iS_dAmAgEd) {
 	public void dischargeLoan(boolean isDamaged) {	//change dIsChArGe_lOaN, iS_dAmAgEd to dischargeLoan, isDamaged
 		//if (!sTaTe.equals(cOnTrOl_sTaTe.INSPECTING))
-		if (!state.equals(ControlState.INSPECTING)) 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
+		//Add curly brackets to if condition
+		if (!state.equals(ControlState.INSPECTING)){ 	//change cOnTrOl_sTaTe to ControlState and sTaTe to state
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
+		}
 		
 		//lIbRaRy.DiScHaRgE_LoAn(CurrENT_loan, iS_dAmAgEd);
 		library.dischargeLoan(currentLoan, isDamaged);		//change lIbRaRy, DiScHaRgE_LoAn, CurrENT_loan, iS_dAmAgEd to library, dischargeLoan, currentLoan, isDamaged
