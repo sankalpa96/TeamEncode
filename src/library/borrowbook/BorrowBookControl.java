@@ -135,7 +135,7 @@ public class BorrowBookControl { 	//class name bORROW_bOOK_cONTROL was changed t
 				// ui.display(book.toString());
 			for (Book book : pendingList){ 		//curly brackets were add to be accordance with style guidelines
 				String stringBook = book.toString()
-				ui.display(book.toString()); 	////Method's return value was assigned to a variable before passing as an argument
+				ui.display(stringBook); 	//Method's return value was assigned to a variable before passing as an argument
 			} 
 				
 			
@@ -146,17 +146,28 @@ public class BorrowBookControl { 	//class name bORROW_bOOK_cONTROL was changed t
 	}
 
 
-	public void CoMmIt_LoAnS() {
-		if (!state.equals(ControlState.FINALISING)) 
+	//public void CoMmIt_LoAnS() { 	
+	public void commitLoans() { 	// method name CoMmIt_LoAnS was changed to commitLoans
+		// if (!state.equals(ControlState.FINALISING)) 
+			// throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
+		if (!state.equals(ControlState.FINALISING)) { 		//curly brackets were add to be accordance with style guidelines
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
+		}
+			
+		
 			
 		for (Book B : pendingList) {
-			Loan lOaN = library.iSsUe_LoAn(B, member);
-			completedList.add(lOaN);			
+			//Loan lOaN = library.issueLoan(B, member);
+			Loan loan = library.issueLoan(B, member); 		//variable name lOaN and method name iSsUe_LoAn were changed to loan and issueLoan
+			completedList.add(loan);			
 		}
 		ui.display("Completed Loan Slip");
-		for (Loan LOAN : completedList) 
-			ui.display(LOAN.toString());
+		// for (Loan LOAN : completedList) 
+			// ui.display(LOAN.toString());
+		for (Loan loan : completedList) { 		//curly brackets were add to be accordance with style guidelines
+			ui.display(loan.toString()); 		//variable name LOAN was changed to loan
+		}
+			
 		
 		ui.setState(BorrowBookUI.UIState.COMPLETED);
 		state = ControlState.COMPLETED;
