@@ -2,6 +2,10 @@ package library.fixbook;
 import library.entities.Book;
 import library.entities.Library;
 
+// Author : Sankalpa
+// Reviewer : Chathura
+// Mediator : Poornima	
+
 //public class fIX_bOOK_cONTROL {
 public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookControl
 	
@@ -13,7 +17,9 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 	
 	//private Library LiBrArY;
 	private Library library; //changed variable LiBrArY to library
-	private Book CuRrEnT_BoOk;
+	
+	//private Book CuRrEnT_BoOk;
+	private Book currentBook; //changed variable CuRrEnT_BoOk to currentBook
 
 
 	public FixBookControl() {
@@ -42,17 +48,22 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
 		//CuRrEnT_BoOk = LiBrArY.gEt_BoOk(BoOkId);
-		CuRrEnT_BoOk = library.gEt_BoOk(BoOkId); //changed variable LiBrArY to library
+		currentBook = library.gEt_BoOk(BoOkId); //changed variable LiBrArY to library and CuRrEnT_BoOk to currentBook
 		
-		if (CuRrEnT_BoOk == null) {
+		//if (CuRrEnT_BoOk == null) {
+		if (currentBook == null) { //changed variable CuRrEnT_BoOk to currentBook
 			Ui.dIsPlAy("Invalid bookId");
 			return;
 		}
-		if (!CuRrEnT_BoOk.iS_DaMaGeD()) {
+		//if (!CuRrEnT_BoOk.iS_DaMaGeD()) {
+		if (!currentBook.iS_DaMaGeD()) { //changed variable CuRrEnT_BoOk to currentBook
 			Ui.dIsPlAy("Book has not been damaged");
 			return;
 		}
-		Ui.dIsPlAy(CuRrEnT_BoOk.toString());
+		
+		//Ui.dIsPlAy(CuRrEnT_BoOk.toString());
+		Ui.dIsPlAy(currentBook.toString()); //changed variable CuRrEnT_BoOk to currentBook
+		
 		Ui.SeT_StAtE(FixBookUI.uI_sTaTe.FIXING);
 		//StAtE = CoNtRoL_StAtE.FIXING;		
 		state = controlState.FIXING; //changed variable StAtE to state		
@@ -66,9 +77,10 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 			
 		if (mUsT_FiX) 
 			//LiBrArY.RePaIr_BoOk(CuRrEnT_BoOk);
-			library.RePaIr_BoOk(CuRrEnT_BoOk); //changed variable LiBrArY to library
+			library.RePaIr_BoOk(currentBook); //changed variable LiBrArY to library
 		
-		CuRrEnT_BoOk = null;
+		//CuRrEnT_BoOk = null;
+		currentBook = null; //changed variable CuRrEnT_BoOk to currentBook
 		Ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
 		//StAtE = CoNtRoL_StAtE.READY;
 		state = controlState.READY;//changed variable StAtE to state
