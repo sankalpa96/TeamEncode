@@ -33,8 +33,10 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 	//public void SeT_Ui(FixBookUI ui) {
 	public void setUI(FixBookUI ui) { // changed method name SeT_Ui to setUI
 		//if (!StAtE.equals(CoNtRoL_StAtE.INITIALISED))
-		if (!state.equals(controlState.INITIALISED)) //changed variable StAtE to state
+		if (!state.equals(controlState.INITIALISED)) {//changed variable StAtE to state
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
+		}
+			
 			
 		this.Ui = ui;
 		//ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
@@ -47,9 +49,10 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 	//public void BoOk_ScAnNeD(int BoOkId) {
 	public void bookScanned(int BoOkId) { //changed method name BoOk_ScAnNeD to bookScanned	
 		//if (!StAtE.equals(CoNtRoL_StAtE.READY))
-		if (!state.equals(controlState.READY)) //changed variable StAtE to state
+		if (!state.equals(controlState.READY)) { //changed variable StAtE to state
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
-			
+		}
+		
 		//CuRrEnT_BoOk = LiBrArY.gEt_BoOk(BoOkId);
 		currentBook = library.getBook(BoOkId); //changed variable LiBrArY to library and CuRrEnT_BoOk to currentBook
 		
@@ -79,13 +82,15 @@ public class FixBookControl { //changed class name fIX_bOOK_cONTROL to FixBookCo
 	//public void FiX_BoOk(boolean mUsT_FiX) {
 	public void fixBook(boolean mustFix) { //changed method name FiX_BoOk to fixBook and mUsT_FiX to mustFix
 		//if (!StAtE.equals(CoNtRoL_StAtE.FIXING))
-        if (!state.equals(controlState.FIXING))	//changed variable StAtE to state		
+        if (!state.equals(controlState.FIXING)) {	//changed variable StAtE to state		
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
-			
+		}
+		
 		//if (mUsT_FiX) 
-		if (mustFix) //changed variable mUsT_FiX to mustFix
+		if (mustFix){ //changed variable mUsT_FiX to mustFix
 			//LiBrArY.RePaIr_BoOk(CuRrEnT_BoOk);
 			library.repairBook(currentBook); //changed variable LiBrArY to library
+		}
 		
 		//CuRrEnT_BoOk = null;
 		currentBook = null; //changed variable CuRrEnT_BoOk to currentBook
