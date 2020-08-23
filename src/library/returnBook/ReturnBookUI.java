@@ -1,88 +1,113 @@
 package library.returnBook;
 import java.util.Scanner;
 
+// Change 1 - change enum name uI_sTaTe and enum object name StATe to UiState and state
+// Change 2 - change object name CoNtRoL and parameter name cOnTrOL to control
+// Change 3 - change function names iNpUt, oUtPuT, Run, DiSpLaY, sEt_sTaTe to input, output, run, display, setState
+// Change 4 - change parameter names ObJeCt, PrOmPt to object, prompt
+// Change 5 - change bOoK_sCaNnEd, sCaNnInG_cOmPlEtE from ReturnBookControl class to bookScanned, scanningComplete
 
 public class ReturnBookUI {
+	//public static enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, INSPECTING, COMPLETED };	//change uI_sTaTe
+        
+    //private rETURN_bOOK_cONTROL CoNtRoL;
+	private ReturnBookControl control;		//change rETURN_bOOK_cONTROL, cOnTrOL
+	//private uI_sTaTe StATe;
+	private UiState state;		//change uI_sTaTe, StATe
 
-	public static enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
-
-	private rETURN_bOOK_cONTROL CoNtRoL;
-	private Scanner iNpUt;
-	private uI_sTaTe StATe;
-
-	
-	public ReturnBookUI(rETURN_bOOK_cONTROL cOnTrOL) {
-		this.CoNtRoL = cOnTrOL;
-		iNpUt = new Scanner(System.in);
-		StATe = uI_sTaTe.INITIALISED;
-		cOnTrOL.sEt_uI(this);
+	//public ReturnBookUI(rETURN_bOOK_cONTROL cOnTrOL) {
+	public ReturnBookUI(ReturnBookControl control) {
+        //this.CoNtRoL = cOnTrOL;
+		this.control = control;	//change CoNtRoL, cOnTrOL to control
+		//iNpUt = new Scanner(System.in);
+		input = new Scanner(System.in);	//change iNpUt
+		//StATe = uI_sTaTe.INITIALISED;
+		state = UiState.INITIALISED;	//change uI_sTaTe, StATe
+		//cOnTrOL.sEt_uI(this);
+		control.sEt_uI(this);	//change CoNtRoL
 	}
 
-
-	public void RuN() {		
-		oUtPuT("Return Book Use Case UI\n");
+	//public void RuN() {	
+	public void run() {		//change Run
+		//oUtPuT("Return Book Use Case UI\n");
+		output("Return Book Use Case UI\n");	//change oUtPuT
 		
 		while (true) {
-			
-			switch (StATe) {
+			//switch (StATe) {
+			switch (state) {    //change StATe to state
 			
 			case INITIALISED:
 				break;
 				
 			case READY:
-				String BoOk_InPuT_StRiNg = iNpUt("Scan Book (<enter> completes): ");
+				//String BoOk_InPuT_StRiNg = iNpUt("Scan Book (<enter> completes): ");
+				String BoOk_InPuT_StRiNg = input("Scan Book (<enter> completes): ");	//change iNpUt
 				if (BoOk_InPuT_StRiNg.length() == 0) 
-					CoNtRoL.sCaNnInG_cOmPlEtE();
+					//CoNtRoL.sCaNnInG_cOmPlEtE();
+					control.scanningComplete();		//change CoNtRoL, sCaNnInG_cOmPlEtE
 				
 				else {
 					try {
 						int Book_Id = Integer.valueOf(BoOk_InPuT_StRiNg).intValue();
-						CoNtRoL.bOoK_sCaNnEd(Book_Id);
+						//CoNtRoL.bOoK_sCaNnEd(Book_Id);
+						control.bookScanned(Book_Id);	//change CoNtRoL, bOoK_sCaNnEd
 					}
 					catch (NumberFormatException e) {
-						oUtPuT("Invalid bookId");
+						//oUtPuT("Invalid bookId");
+						output("Invalid bookId");		//change oUtPuT
 					}					
 				}
 				break;				
 				
 			case INSPECTING:
-				String AnS = iNpUt("Is book damaged? (Y/N): ");
+				//String AnS = iNpUt("Is book damaged? (Y/N): ");
+				String AnS = input("Is book damaged? (Y/N): ");		//change iNpUt
 				boolean Is_DAmAgEd = false;
 				if (AnS.toUpperCase().equals("Y")) 					
 					Is_DAmAgEd = true;
 				
-				CoNtRoL.dIsChArGe_lOaN(Is_DAmAgEd);
+				//CoNtRoL.dIsChArGe_lOaN(Is_DAmAgEd);
+				control.dIsChArGe_lOaN(Is_DAmAgEd);	//change CoNtRoL
 			
 			case COMPLETED:
-				oUtPuT("Return processing complete");
+				//oUtPuT("Return processing complete");
+				output("Return processing complete");	//change oUtPuT
 				return;
 			
 			default:
-				oUtPuT("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
+				//oUtPuT("Unhandled state");
+				output("Unhandled state");		//change oUtPuT
+                //throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);	
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + state);     //change StATe
 			}
 		}
 	}
 
-	
-	private String iNpUt(String PrOmPt) {
-		System.out.print(PrOmPt);
-		return iNpUt.nextLine();
+	//private String iNpUt(String PrOmPt) {
+	private String input(String prompt) {	//change iNpUt, PrOmPt
+		//System.out.print(PrOmPt);
+		System.out.print(PrOmPt);		//change PrOmPt
+		//return iNpUt.nextLine();
+		return input.nextLine();		//change iNpUt
 	}	
 		
-		
-	private void oUtPuT(Object ObJeCt) {
-		System.out.println(ObJeCt);
+	//private void oUtPuT(Object ObJeCt) 	
+	private void output(Object object) {	//change oUtPuT, ObJeCt
+		//System.out.println(ObJeCt);
+		System.out.println(object);		//change ObJeCt
 	}
 	
-			
-	public void DiSpLaY(Object object) {
-		oUtPuT(object);
+	//public void DiSpLaY(Object object) {		
+	public void display(Object object) {	//change DiSpLaY
+		//oUtPuT(object);
+		output(object);		//change oUtPuT
 	}
 	
-	public void sEt_sTaTe(uI_sTaTe state) {
-		this.StATe = state;
-	}
+	//public void sEt_sTaTe(uI_sTaTe state) {
+	public void setState(UiState state) {		//change uI_sTaTe, sEt_sTaTe
+		//this.StATe = state;
+		this.state = state;		//change StATe
 
 	
 }
