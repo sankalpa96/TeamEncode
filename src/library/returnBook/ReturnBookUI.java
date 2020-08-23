@@ -5,7 +5,9 @@ import java.util.Scanner;
 // Change 2 - change object name CoNtRoL and parameter name cOnTrOL to control
 // Change 3 - change function names iNpUt, oUtPuT, Run, DiSpLaY, sEt_sTaTe to input, output, run, display, setState
 // Change 4 - change parameter names ObJeCt, PrOmPt to object, prompt
-// Change 5 - change bOoK_sCaNnEd, sCaNnInG_cOmPlEtE from ReturnBookControl class to bookScanned, scanningComplete
+// Change 5 - change bOoK_sCaNnEd, sCaNnInG_cOmPlEtE, dIsChArGe_lOaN from ReturnBookControl class to bookScanned, scanningComplete, dischargeLoan
+// Change 6 - change variable name BoOk_InPuT_StRiNg, Book_Id, AnS, Is_DAmAgEd to bookInputString, bookId, ans, isDamaged
+// Change 7 - add curly brackets to single line if blocks
 
 public class ReturnBookUI {
 	//public static enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
@@ -42,16 +44,18 @@ public class ReturnBookUI {
 				
 			case READY:
 				//String BoOk_InPuT_StRiNg = iNpUt("Scan Book (<enter> completes): ");
-				String BoOk_InPuT_StRiNg = input("Scan Book (<enter> completes): ");	//change iNpUt
-				if (BoOk_InPuT_StRiNg.length() == 0) 
+				String bookInputString = input("Scan Book (<enter> completes): ");	//change BoOk_InPuT_StRiNg, iNpUt
+				//if (BoOk_InPuT_StRiNg.length() == 0) 
+				if (bookInputString.length() == 0) {	// change BoOk_InPuT_StRiNg and add curly brackets
 					//CoNtRoL.sCaNnInG_cOmPlEtE();
 					control.scanningComplete();		//change CoNtRoL, sCaNnInG_cOmPlEtE
-				
+				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(BoOk_InPuT_StRiNg).intValue();
+						//int Book_Id = Integer.valueOf(BoOk_InPuT_StRiNg).intValue();
+						int bookId = Integer.valueOf(bookInputString).intValue();	//change Book_Id, BoOk_InPuT_StRiNg
 						//CoNtRoL.bOoK_sCaNnEd(Book_Id);
-						control.bookScanned(Book_Id);	//change CoNtRoL, bOoK_sCaNnEd
+						control.bookScanned(bookId);	//change CoNtRoL, bOoK_sCaNnEd, Book_Id
 					}
 					catch (NumberFormatException e) {
 						//oUtPuT("Invalid bookId");
@@ -62,13 +66,16 @@ public class ReturnBookUI {
 				
 			case INSPECTING:
 				//String AnS = iNpUt("Is book damaged? (Y/N): ");
-				String AnS = input("Is book damaged? (Y/N): ");		//change iNpUt
-				boolean Is_DAmAgEd = false;
-				if (AnS.toUpperCase().equals("Y")) 					
-					Is_DAmAgEd = true;
-				
+				String ans = input("Is book damaged? (Y/N): ");		//change AnS, iNpUt
+				//boolean Is_DAmAgEd = false;
+				boolean isDamaged = false;		//change Is_DAmAgEd
+				//if (AnS.toUpperCase().equals("Y"))
+				if (ans.toUpperCase().equals("Y")) {		//change AnS and add curly brackets	
+					//Is_DAmAgEd = true;
+					isDamaged = true;		//change Is_DAmAgEd
+				}
 				//CoNtRoL.dIsChArGe_lOaN(Is_DAmAgEd);
-				control.dIsChArGe_lOaN(Is_DAmAgEd);	//change CoNtRoL
+				control.dischargeLoan(isDamaged);	//change CoNtRoL, Is_DAmAgEd, dIsChArGe_lOaN
 			
 			case COMPLETED:
 				//oUtPuT("Return processing complete");
