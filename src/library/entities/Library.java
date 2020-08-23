@@ -1,5 +1,4 @@
 
-//constant names have been changed to proper format
 //Author: Chathura
 //Reviewer: Poornima
 //Mediator: Rovidu
