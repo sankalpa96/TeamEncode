@@ -16,14 +16,24 @@ import library.payfine.pAY_fINE_cONTROL;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
 
+// Author - Poornima
+// Reviewer - Rovidu
+// Mediator - Sankalpa
+
+//Change 1 - Change variables IN, LIB, MENU, CAL, SDF to in, lib, menu, cal, sdf
 
 public class Main {
 	
-	private static Scanner IN;
-	private static Library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	//private static Scanner IN;
+	private static Scanner in;		//change IN
+	//private static Library LIB;
+	private static Library lib;		//change LIB
+	//private static String MENU;
+	private static String menu;		//change MENU
+	//private static Calendar CAL;
+	private static Calendar cal;	//change CAL
+	//private static SimpleDateFormat SDF;
+	private static SimpleDateFormat sdf;	//change SDF
 	
 	
 	private static String Get_menu() {
@@ -54,27 +64,36 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = Library.GeTiNsTaNcE();
-			CAL = Calendar.gEtInStAnCe();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+			//IN = new Scanner(System.in);
+			in = new Scanner(System.in);		//change IN
+			//LIB = Library.GeTiNsTaNcE();
+			lib = Library.GeTiNsTaNcE();		//change LIB
+			//CAL = Calendar.gEtInStAnCe();
+			cal = Calendar.gEtInStAnCe();		//change CAL
+			//SDF = new SimpleDateFormat("dd/MM/yyyy");
+			sdf = new SimpleDateFormat("dd/MM/yyyy");	//change SDF
 	
-			for (Member m : LIB.lIsT_MeMbErS()) {
+			//for (Member m : LIB.lIsT_MeMbErS()) {
+			for (Member m : lib.lIsT_MeMbErS()) {	//chamge LIB
 				output(m);
 			}
 			output(" ");
-			for (Book b : LIB.lIsT_BoOkS()) {
+			//for (Book b : LIB.lIsT_BoOkS()) {
+			for (Book b : lib.lIsT_BoOkS()) {		//change LIB
 				output(b);
 			}
-						
-			MENU = Get_menu();
+			
+			//MENU = Get_menu();			
+			menu = Get_menu();		//change MENU
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.gEt_DaTe()));
-				String c = input(MENU);
+				//output("\n" + SDF.format(CAL.gEt_DaTe()));
+				output("\n" + sdf.format(cal.gEt_DaTe()));		//change SDF, CAL
+				//String c = input(MENU);
+				String c = input(menu);		//chaange MENU
 				
 				switch (c.toUpperCase()) {
 				
@@ -142,7 +161,8 @@ public class Main {
 
 	private static void LIST_CURRENT_LOANS() {
 		output("");
-		for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
+		//for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
+		for (Loan loan : lib.lISt_CuRrEnT_LoAnS()) {	//change LIB
 			output(loan + "\n");
 		}		
 	}
@@ -151,7 +171,8 @@ public class Main {
 
 	private static void LIST_BOOKS() {
 		output("");
-		for (Book book : LIB.lIsT_BoOkS()) {
+		//for (Book book : LIB.lIsT_BoOkS()) {
+		for (Book book : lib.lIsT_BoOkS()) {	//chane LIB
 			output(book + "\n");
 		}		
 	}
@@ -160,7 +181,8 @@ public class Main {
 
 	private static void LIST_MEMBERS() {
 		output("");
-		for (Member member : LIB.lIsT_MeMbErS()) {
+		//for (Member member : LIB.lIsT_MeMbErS()) {
+		for (Member member : lib.lIsT_MeMbErS()) {		//change LIB
 			output(member + "\n");
 		}		
 	}
@@ -185,9 +207,12 @@ public class Main {
 	private static void INCREMENT_DATE() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.cHeCk_CuRrEnT_LoAnS();
-			output(SDF.format(CAL.gEt_DaTe()));
+			//CAL.incrementDate(days);
+			cal.incrementDate(days);		//change CAL
+			//LIB.cHeCk_CuRrEnT_LoAnS();
+			lib.cHeCk_CuRrEnT_LoAnS();		//change LIB
+			//output(SDF.format(CAL.gEt_DaTe()));
+			output(sdf.format(cal.gEt_DaTe()));		//change SDF, CAL
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -200,7 +225,8 @@ public class Main {
 		String AuThOr = input("Enter author: ");
 		String TiTlE  = input("Enter title: ");
 		String CaLl_NuMbEr = input("Enter call number: ");
-		Book BoOk = LIB.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);
+		//Book BoOk = LIB.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);
+		Book BoOk = lib.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);	//change LIB
 		output("\n" + BoOk + "\n");
 		
 	}
@@ -212,7 +238,8 @@ public class Main {
 			String FiRsT_NaMe  = input("Enter first name: ");
 			String EmAiL_AdDrEsS = input("Enter email address: ");
 			int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member MeMbEr = LIB.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+			//Member MeMbEr = LIB.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+			Member MeMbEr = lib.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr); 	//change LIB
 			output("\n" + MeMbEr + "\n");
 			
 		} catch (NumberFormatException e) {
@@ -224,7 +251,8 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		//return IN.nextLine();
+		return in.nextLine();	//change IN
 	}
 	
 	
