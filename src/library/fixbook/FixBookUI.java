@@ -4,22 +4,26 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
+	//public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum uiState { INITIALISED, READY, FIXING, COMPLETED }; // changed enum name uI_sTaTe to uiState
 
 	private fIX_bOOK_cONTROL CoNtRoL;
 	private Scanner InPuT;
-	private uI_sTaTe StAtE;
+	//private uI_sTaTe StAtE;
+	private uiState StAtE; // changed enum name uI_sTaTe to uiState
 
 	
 	public FixBookUI(fIX_bOOK_cONTROL CoNtRoL) {
 		this.CoNtRoL = CoNtRoL;
 		InPuT = new Scanner(System.in);
-		StAtE = uI_sTaTe.INITIALISED;
+		//StAtE = uI_sTaTe.INITIALISED;
+		StAtE = uiState.INITIALISED; // changed enum name uI_sTaTe to uiState
 		CoNtRoL.SeT_Ui(this);
 	}
 
 
-	public void SeT_StAtE(uI_sTaTe state) {
+	//public void SeT_StAtE(uI_sTaTe state) {
+	public void SeT_StAtE(uiState state) { // changed enum name uI_sTaTe to uiState
 		this.StAtE = state;
 	}
 
