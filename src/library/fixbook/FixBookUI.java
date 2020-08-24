@@ -1,6 +1,9 @@
 package library.fixbook;
 import java.util.Scanner;
 
+// Author : Sankalpa
+// Reviewer : Chathura
+// Mediator : Poornima	
 
 public class FixBookUI {
 
@@ -10,21 +13,21 @@ public class FixBookUI {
 	private fIX_bOOK_cONTROL CoNtRoL;
 	private Scanner InPuT;
 	//private uI_sTaTe StAtE;
-	private uiState StAtE; // changed enum name uI_sTaTe to uiState
+	private uiState state; // changed enum name uI_sTaTe to uiState
 
 	
 	public FixBookUI(fIX_bOOK_cONTROL CoNtRoL) {
 		this.CoNtRoL = CoNtRoL;
 		InPuT = new Scanner(System.in);
 		//StAtE = uI_sTaTe.INITIALISED;
-		StAtE = uiState.INITIALISED; // changed enum name uI_sTaTe to uiState
+		state = uiState.INITIALISED; // changed enum name uI_sTaTe to uiState
 		CoNtRoL.SeT_Ui(this);
 	}
 
 
 	//public void SeT_StAtE(uI_sTaTe state) {
 	public void SeT_StAtE(uiState state) { // changed enum name uI_sTaTe to uiState
-		this.StAtE = state;
+		this.state = state;
 	}
 
 	
@@ -33,7 +36,8 @@ public class FixBookUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			//switch (StAtE) {
+			switch (state) { // changed variable name stAtE to state
 			
 			case READY:
 				String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
@@ -66,7 +70,8 @@ public class FixBookUI {
 			
 			default:
 				OuTpUt("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				//throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);		
+				throw new RuntimeException("FixBookUI : unhandled state :" + state); // changed variable name stAtE to state		
 			
 			}		
 		}
