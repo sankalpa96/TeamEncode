@@ -48,7 +48,8 @@ public class BorrowBookUI {
 	}
 
 	
-	public void RuN() {
+	//public void RuN() {
+	public void run() { 	//method name RuN was changed to run
 		output("Borrow Book Use Case UI\n");
 		
 		while (true) {
@@ -61,14 +62,18 @@ public class BorrowBookUI {
 
 				
 			case READY:
-				String MEM_STR = input("Swipe member card (press <enter> to cancel): ");
-				if (MEM_STR.length() == 0) {
-					control.CaNcEl();
+				//String MEM_STR = input("Swipe member card (press <enter> to cancel): ");
+				String memStr = input("Swipe member card (press <enter> to cancel): "); 	//variable MEM_STR was changed to memStr
+				if (memStr.length() == 0) {
+					//control.CaNcEl();
+					control.cancel(); 	//method name CaNcEl was changed to cancel
 					break;
 				}
 				try {
-					int MeMbEr_Id = Integer.valueOf(MEM_STR).intValue();
-					control.SwIpEd(MeMbEr_Id);
+					//int MeMbEr_Id = Integer.valueOf(memStr).intValue();
+					int memberId = Integer.valueOf(memStr).intValue(); 	//variable name MeMbEr_Id was changed to memberId
+					//control.SwIpEd(memberId);
+					control.swiped(memberId); 	//method name SwIpEd was changed to swiped
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -78,19 +83,23 @@ public class BorrowBookUI {
 				
 			case RESTRICTED:
 				input("Press <any key> to cancel");
-				control.CaNcEl();
+				control.cancel();
 				break;
 			
 				
 			case SCANNING:
-				String BoOk_StRiNg_input = input("Scan Book (<enter> completes): ");
-				if (BoOk_StRiNg_input.length() == 0) {
-					control.CoMpLeTe();
+				//String bookStringInput = input("Scan Book (<enter> completes): ");
+				String bookStringInput = input("Scan Book (<enter> completes): "); 	//variable name bookStringInput was changed to bookStringInput
+				if (bookStringInput.length() == 0) {
+					//control.CoMpLeTe();
+					control.complete(); 	//method name CoMpLeTe was changed to complete
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(BoOk_StRiNg_input).intValue();
-					control.ScAnNeD(BiD);
+					//int BiD = Integer.valueOf(bookStringInput).intValue();
+					int bId = Integer.valueOf(bookStringInput).intValue(); 	//variable name BiD was changed to bId
+					//control.ScAnNeD(bId);
+					control.scanned(bId); 	//method name ScAnNeD was changed to scanned
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -99,12 +108,14 @@ public class BorrowBookUI {
 					
 				
 			case FINALISING:
-				String AnS = input("Commit loans? (Y/N): ");
-				if (AnS.toUpperCase().equals("N")) {
-					control.CaNcEl();
+				//String AnS = input("Commit loans? (Y/N): ");
+				String ans = input("Commit loans? (Y/N): "); 	//variable name AnS was changed to ans
+				if (ans.toUpperCase().equals("N")) {
+					control.cancel();
 					
 				} else {
-					control.CoMmIt_LoAnS();
+					//control.CoMmIt_Loans();
+					control.commitLoans(); 	//method name CoMmIt_Loans was changed to commitLoans
 					input("Press <any key> to complete ");
 				}
 				break;
@@ -123,7 +134,8 @@ public class BorrowBookUI {
 	}
 
 
-	public void DiSpLaY(Object object) {
+	//public void DiSpLaY(Object object) {
+	public void display(Object object) { 	//method name DiSpLaY was changed to display
 		output(object);		
 	}
 
