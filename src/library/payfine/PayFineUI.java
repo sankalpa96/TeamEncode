@@ -18,7 +18,8 @@ public class PayFineUI {
 //	private uI_sTaTe StAtE;
 	private UiState state; // Changed uI_sTaTe to UiState & StAtE to state by author
 	
-	public PayFineUI(pAY_fINE_cONTROL control) {
+//	public PayFineUI(pAY_fINE_cONTROL control) {
+	public PayFineUI(PayFineControl control) { // Changed pAY_fINE_cONTROL to PayFineControl by author
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
@@ -26,12 +27,14 @@ public class PayFineUI {
 	}
 	
 	
-	public void SeT_StAtE(uI_sTaTe state) {
+//	public void SeT_StAtE(uI_sTaTe state) {
+	public void setState(UiState state) { // Changed SeT_StAtE to setState & uI_sTaTe to UiState by author
 		this.state = state;
 	}
 
 
-	public void RuN() {
+//	public void RuN() {
+	public void run() { // Changed RuN to run by author
 		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
@@ -99,7 +102,8 @@ public class PayFineUI {
 	}	
 			
 
-	public void DiSplAY(Object object) {
+//	public void DiSplAY(Object object) {
+	public void display(Object object) { // Changed DiSplAY to display by author
 		output(object);
 	}
 
