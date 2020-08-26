@@ -3,29 +3,36 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+//import library.borrowbook.bORROW_bOOK_cONTROL;
+import library.borrowbook.bORROW_bOOK_cONTROL;	//bORROW_bOOK_cONTROL to BorrowBookControl
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Member;
 import library.fixbook.FixBookUI;
-import library.fixbook.fIX_bOOK_cONTROL;
+//import library.fixbook.fIX_bOOK_cONTROL; 
+import library.fixbook.fIX_bOOK_cONTROL; 	//fIX_bOOK_cONTROL to FixBookControl
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+//import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.pAY_fINE_cONTROL;	//pAY_fINE_cONTROL to PayFineControl
 import library.returnBook.ReturnBookUI;
-import library.returnBook.rETURN_bOOK_cONTROL;
+//import library.returnBook.rETURN_bOOK_cONTROL;
+import library.returnBook.rETURN_bOOK_cONTROL;	//rETURN_bOOK_cONTROL to ReturnBookControl
 
 // Author - Poornima
 // Reviewer - Rovidu
 // Mediator - Sankalpa
 
 //Change 1 - Change variables IN, LIB, MENU, CAL, SDF to in, lib, menu, cal, sdf
-//Change 2 - Change Get_menu to getMenu abd GeTiNsTaNcE, gEtInStAnCe to getInstance
-//Change 3 - Change lIsT_MeMbErS, lIsT_BoOkS, gEt_DaTe to listMembers, listBooks, getDate
-//Change 4 - Change ADD_MEMBER, ADD_BOOK, FIX_BOOKS to addMember, addBook, fixBooks
+//Change 2 - Change function names Get_menu to getMenu abd GeTiNsTaNcE, gEtInStAnCe to getInstance
+//Change 3 - Change function names lIsT_MeMbErS, lIsT_BoOkS, gEt_DaTe to listMembers, listBooks, getDate
+//Change 4 - Change function names ADD_MEMBER, ADD_BOOK, FIX_BOOKS to addMember, addBook, fixBooks
 //			 Change BORROW_BOOK, RETURN_BOOK, LIST_CURRENT_LOANS to borrowBook, returnBook, listCurrentLoans
 //			 Change PAY_FINES, INCREMENT_DATE to payFines, incrementDate
+//Change 5 - Change function names lISt_CuRrEnT_LoAnS, lIsT_BoOkS, RuN to listCurrentLoans, listBooks, run
+//			 Change object class names pAY_fINE_cONTROL, bORROW_bOOK_cONTROL to PayFineControl BorrowBookControl
+//			 Change object class names rETURN_bOOK_cONTROL, fIX_bOOK_cONTROL to ReturnBookControl, FixBookControl
 
 public class Main {
 	
@@ -169,8 +176,9 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
+	//private static void PAY_FINES() {	private static void payFines() {		//change PAY_FINES to payFines
+		//new PayFineUI(new pAY_fINE_cONTROL()).RuN();
+		new PayFineUI(new PayFineControl()).RuN();		//change pAY_fINE_cONTROL to PayFineControl	
 	}
 
 
@@ -178,7 +186,7 @@ public class Main {
 	private static void listCurrentLoans() {		//change LIST_CURRENT_LOANS tp listCurrentLoans
 		output("");
 		//for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
-		for (Loan loan : lib.lISt_CuRrEnT_LoAnS()) {	//change LIB
+		for (Loan loan : lib.listCurrentLoans()) {	//change LIB, lISt_CuRrEnT_LoAnS to lib, listCurrentLoans
 			output(loan + "\n");
 		}		
 	}
@@ -188,7 +196,7 @@ public class Main {
 	private static void listBooks() {		//change LIST_BOOKS to listBooks
 		output("");
 		//for (Book book : LIB.lIsT_BoOkS()) {
-		for (Book book : lib.listBooks()) {	//chane LIB, LIST_BOOKS to lib, listBooks
+		for (Book book : lib.listBooks()) {	//chane LIB, lIsT_BoOkS to lib, listBooks
 			output(book + "\n");
 		}		
 	}
@@ -198,7 +206,7 @@ public class Main {
 	private static void LIST_MEMBERS() { 		//change LIST_MEMBERS to listMembers
 		output("");
 		//for (Member member : LIB.lIsT_MeMbErS()) {
-		for (Member member : lib.lIsT_MeMbErS()) {		//change LIB
+		for (Member member : lib.listMembers()) {		//change LIB, lIsT_MeMbErS to lib, listMembers
 			output(member + "\n");
 		}		
 	}
@@ -207,18 +215,21 @@ public class Main {
 
 	//private static void BORROW_BOOK() {
 	private static void borrowBook() {		//change BORROW_BOOK to borrowBook
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		//new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();
+		new BorrowBookUI(new BorrowBookControl()).run();		//change bORROW_bOOK_cONTROL to BorrowBookControl
 	}
 
 
 	//private static void RETURN_BOOK() {
 	private static void returnBook() {		//change RETURN_BOOK to returnBook
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
+		//new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();	
+		new ReturnBookUI(new ReturnBookControl()).run();	//change rETURN_bOOK_cONTROL to ReturnBookControl		
 	}
 
 	//private static void FIX_BOOKS() {
 	private static void fixBooks() {		//change FIX_BOOKS to fixBooks
-		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
+		//new FixBookUI(new fIX_bOOK_cONTROL()).run();
+		new FixBookUI(new FixBookControl()).run();		//change fIX_bOOK_cONTROL to FixBookControl
 	}
 
 	//private static void INCREMENT_DATE() {
