@@ -3,30 +3,40 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+//import library.borrowbook.bORROW_bOOK_cONTROL;
+import library.borrowbook.BorrowBookControl;	//bORROW_bOOK_cONTROL to BorrowBookControl
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Member;
 import library.fixbook.FixBookUI;
-import library.fixbook.fIX_bOOK_cONTROL;
+//import library.fixbook.fIX_bOOK_cONTROL; 
+import library.fixbook.FixBookControl; 	//fIX_bOOK_cONTROL to FixBookControl
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+//import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;	//pAY_fINE_cONTROL to PayFineControl
 import library.returnBook.ReturnBookUI;
-import library.returnBook.rETURN_bOOK_cONTROL;
+//import library.returnBook.rETURN_bOOK_cONTROL;
+import library.returnBook.ReturnBookControl;	//rETURN_bOOK_cONTROL to ReturnBookControl
 
 // Author - Poornima
 // Reviewer - Rovidu
 // Mediator - Sankalpa
 
 //Change 1 - Change variables IN, LIB, MENU, CAL, SDF to in, lib, menu, cal, sdf
-//Change 2 - Change Get_menu to getMenu abd GeTiNsTaNcE, gEtInStAnCe to getInstance
-//Change 3 - Change lIsT_MeMbErS, lIsT_BoOkS, gEt_DaTe to listMembers, listBooks, getDate
-//Change 4 - Change ADD_MEMBER, ADD_BOOK, FIX_BOOKS to addMember, addBook, fixBooks
+//Change 2 - Change function names Get_menu to getMenu abd GeTiNsTaNcE, gEtInStAnCe to getInstance
+//Change 3 - Change function names lIsT_MeMbErS, lIsT_BoOkS, gEt_DaTe to listMembers, listBooks, getDate
+//Change 4 - Change function names ADD_MEMBER, ADD_BOOK, FIX_BOOKS to addMember, addBook, fixBooks
 //			 Change BORROW_BOOK, RETURN_BOOK, LIST_CURRENT_LOANS to borrowBook, returnBook, listCurrentLoans
 //			 Change PAY_FINES, INCREMENT_DATE to payFines, incrementDate
-
+//Change 5 - Change function names lISt_CuRrEnT_LoAnS, lIsT_BoOkS, RuN to listCurrentLoans, listBooks, run
+//			 Change object class names pAY_fINE_cONTROL, bORROW_bOOK_cONTROL to PayFineControl BorrowBookControl
+//			 Change object class names rETURN_bOOK_cONTROL, fIX_bOOK_cONTROL to ReturnBookControl, FixBookControl
+//Change 6 - Change cHeCk_CuRrEnT_LoAnS, aDd_BoOk, aDd_MeMbEr to checkCurrentLoans, addBook, addMember
+//			 Change variables AuThOr, TiTlE, CaLl_NuMbEr to author, title, callNumber
+//			 Change variables LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr to lastName, firstName, emailAddress, phoneNumber
+//			 Change Book object name BoOk to book and Member object name MeMbEr to member
 public class Main {
 	
 	//private static Scanner IN;
@@ -169,8 +179,9 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
+	//private static void PAY_FINES() {	private static void payFines() {		//change PAY_FINES to payFines
+		//new PayFineUI(new pAY_fINE_cONTROL()).RuN();
+		new PayFineUI(new PayFineControl()).RuN();		//change pAY_fINE_cONTROL to PayFineControl	
 	}
 
 
@@ -178,7 +189,7 @@ public class Main {
 	private static void listCurrentLoans() {		//change LIST_CURRENT_LOANS tp listCurrentLoans
 		output("");
 		//for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
-		for (Loan loan : lib.lISt_CuRrEnT_LoAnS()) {	//change LIB
+		for (Loan loan : lib.listCurrentLoans()) {	//change LIB, lISt_CuRrEnT_LoAnS to lib, listCurrentLoans
 			output(loan + "\n");
 		}		
 	}
@@ -188,17 +199,17 @@ public class Main {
 	private static void listBooks() {		//change LIST_BOOKS to listBooks
 		output("");
 		//for (Book book : LIB.lIsT_BoOkS()) {
-		for (Book book : lib.listBooks()) {	//chane LIB, LIST_BOOKS to lib, listBooks
+		for (Book book : lib.listBooks()) {	//chane LIB, lIsT_BoOkS to lib, listBooks
 			output(book + "\n");
 		}		
 	}
 
 
 	//private static void LIST_MEMBERS() {
-	private static void LIST_MEMBERS() { 		//change LIST_MEMBERS to listMembers
+	private static void listMembers() { 		//change LIST_MEMBERS to listMembers
 		output("");
 		//for (Member member : LIB.lIsT_MeMbErS()) {
-		for (Member member : lib.lIsT_MeMbErS()) {		//change LIB
+		for (Member member : lib.listMembers()) {		//change LIB, lIsT_MeMbErS to lib, listMembers
 			output(member + "\n");
 		}		
 	}
@@ -207,18 +218,21 @@ public class Main {
 
 	//private static void BORROW_BOOK() {
 	private static void borrowBook() {		//change BORROW_BOOK to borrowBook
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		//new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();
+		new BorrowBookUI(new BorrowBookControl()).run();		//change bORROW_bOOK_cONTROL to BorrowBookControl
 	}
 
 
 	//private static void RETURN_BOOK() {
 	private static void returnBook() {		//change RETURN_BOOK to returnBook
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
+		//new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();	
+		new ReturnBookUI(new ReturnBookControl()).run();	//change rETURN_bOOK_cONTROL to ReturnBookControl		
 	}
 
 	//private static void FIX_BOOKS() {
 	private static void fixBooks() {		//change FIX_BOOKS to fixBooks
-		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
+		//new FixBookUI(new fIX_bOOK_cONTROL()).run();
+		new FixBookUI(new FixBookControl()).run();		//change fIX_bOOK_cONTROL to FixBookControl
 	}
 
 	//private static void INCREMENT_DATE() {
@@ -228,7 +242,7 @@ public class Main {
 			//CAL.incrementDate(days);
 			cal.incrementDate(days);		//change CAL
 			//LIB.cHeCk_CuRrEnT_LoAnS();
-			lib.cHeCk_CuRrEnT_LoAnS();		//change LIB
+			lib.checkCurrentLoans();		//change LIB, cHeCk_CuRrEnT_LoAnS to lib, checkCurrentLoans
 			//output(SDF.format(CAL.gEt_DaTe()));
 			output(sdf.format(cal.getDate()));		//change SDF, CAL, gEt_DaTe
 			
@@ -240,25 +254,34 @@ public class Main {
 	//private static void ADD_BOOK() {
 	private static void addBook() {		//change ADD_BOOK to addBook
 		
-		String AuThOr = input("Enter author: ");
-		String TiTlE  = input("Enter title: ");
-		String CaLl_NuMbEr = input("Enter call number: ");
+		//String AuThOr = input("Enter author: ");	
+		String author = input("Enter author: ");	//change AuThOr to author
+		//String TiTlE  = input("Enter title: ");
+		String title  = input("Enter title: ");		//change TiTlE to title
+		//String CaLl_NuMbEr = input("Enter call number: ");
+		String callNumber = input("Enter call number: ");	//change CaLl_NuMbEr to callNumber
 		//Book BoOk = LIB.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);
-		Book BoOk = lib.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);	//change LIB
-		output("\n" + BoOk + "\n");
+		Book book = lib.addBook(author, title, callNumber);	//change LIB, BoOk, author, title, callNumber, aDd_BoOk
+		//output("\n" + BoOk + "\n");
+		output("\n" + book + "\n");		//change BoOk to book
 		
 	}
 
 	//private static void ADD_MEMBER() {
 	private static void addMember() {		//change ADD_MEMBER to addMember
 		try {
-			String LaSt_NaMe = input("Enter last name: ");
-			String FiRsT_NaMe  = input("Enter first name: ");
-			String EmAiL_AdDrEsS = input("Enter email address: ");
-			int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
+			//String LaSt_NaMe = input("Enter last name: ");
+			String lastName = input("Enter last name: ");		//change LaSt_NaMe to lastName
+			//String FiRsT_NaMe  = input("Enter first name: ");
+			String firstName  = input("Enter first name: ");	//change FiRsT_NaMe to firstName
+			//String EmAiL_AdDrEsS = input("Enter email address: ");
+			String emailAddress = input("Enter email address: ");	//change EmAiL_AdDrEsS to emailAddress
+			//int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
+			int phoneNumber = Integer.valueOf(input("Enter phone number: ")).intValue();	//change Ph to phoneNumber
 			//Member MeMbEr = LIB.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
-			Member MeMbEr = lib.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr); 	//change LIB
-			output("\n" + MeMbEr + "\n");
+			Member member = lib.addMember(lastName, firstName, emailAddress, phoneNumber); 	//change LIB, aDd_MeMbEr, LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr
+			//output("\n" + MeMbEr + "\n");
+			output("\n" + member + "\n");	//change MeMbEr to member
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid phone number\n");
@@ -270,7 +293,7 @@ public class Main {
 	private static String input(String prompt) {
 		System.out.print(prompt);
 		//return IN.nextLine();
-		return in.nextLine();	//change IN
+		return in.nextLine();	//change IN to in
 	}
 	
 	
