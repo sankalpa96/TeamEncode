@@ -1,117 +1,142 @@
+
+//Author: Chathura
+//Reviewer: Poornima
+//Mediator: Rovidu
+
+
 package library.borrowbook;
 import java.util.Scanner;
 
 
 public class BorrowBookUI {
 	
-	public static enum uI_STaTe { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
+	//public static enum uI_STaTe { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
+	public static enum UIState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED }; 	//changed enum name uI_STaTe to UIState
 
-	private bORROW_bOOK_cONTROL CoNtRoL;
-	private Scanner InPuT;
-	private uI_STaTe StaTe;
+	//private bORROW_bOOK_cONTROL CoNtRoL;
+	private BorrowBookControl control; 	//class name bORROW_bOOK_cONTROL and variable name CoNtRoL were changed to BorrowBookControl and control 
+	//private Scanner InPuT;
+	private Scanner input; 		//variable name InPuT was changed to input
+	//private UIState StaTe;
+	private UIState state; 		//variable name StaTe was changed to state
 
 	
-	public BorrowBookUI(bORROW_bOOK_cONTROL control) {
-		this.CoNtRoL = control;
-		InPuT = new Scanner(System.in);
-		StaTe = uI_STaTe.INITIALISED;
-		control.SeT_Ui(this);
+	public BorrowBookUI(BorrowBookControl control) {
+		this.control = control;
+		input = new Scanner(System.in);
+		state = UIState.INITIALISED;
+		//control.SeT_Ui(this);
+		control.setUI(this); 	//method name SeT_Ui was changed to setUI
 	}
 
 	
-	private String iNpUT(String PrOmPt) {
-		System.out.print(PrOmPt);
-		return InPuT.nextLine();
+	//private String iNpUT(String PrOmPt) {
+	private String input(String prompt) { 	//method name iNpUT and parameter variable name PrOmPt were changed to input and prompt
+		System.out.print(prompt); 
 	}	
 		
 		
-	private void OuTpUt(Object ObJeCt) {
-		System.out.println(ObJeCt);
+	//private void OuTpUt(Object object) {
+	private void output(Object object) { 	//method name OuTpUt and parameter variable name ObJeCt were changed to output and object
+		System.out.println(object);
 	}
 	
 			
-	public void SeT_StAtE(uI_STaTe StAtE) {
-		this.StaTe = StAtE;
+	//public void SeT_state(UIState state) {
+	public void setState(UIState state) { 	//method name SeT_state and parameter variable name StAtE were changed to setState and state 
+		this.state = state;
 	}
 
 	
-	public void RuN() {
-		OuTpUt("Borrow Book Use Case UI\n");
+	//public void RuN() {
+	public void run() { 	//method name RuN was changed to run
+		output("Borrow Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (StaTe) {			
+			switch (state) {			
 			
 			case CANCELLED:
-				OuTpUt("Borrowing Cancelled");
+				output("Borrowing Cancelled");
 				return;
 
 				
 			case READY:
-				String MEM_STR = iNpUT("Swipe member card (press <enter> to cancel): ");
-				if (MEM_STR.length() == 0) {
-					CoNtRoL.CaNcEl();
+				//String MEM_STR = input("Swipe member card (press <enter> to cancel): ");
+				String memStr = input("Swipe member card (press <enter> to cancel): "); 	//variable MEM_STR was changed to memStr
+				if (memStr.length() == 0) {
+					//control.CaNcEl();
+					control.cancel(); 	//method name CaNcEl was changed to cancel
 					break;
 				}
 				try {
-					int MeMbEr_Id = Integer.valueOf(MEM_STR).intValue();
-					CoNtRoL.SwIpEd(MeMbEr_Id);
+					//int MeMbEr_Id = Integer.valueOf(memStr).intValue();
+					int memberId = Integer.valueOf(memStr).intValue(); 	//variable name MeMbEr_Id was changed to memberId
+					//control.SwIpEd(memberId);
+					control.swiped(memberId); 	//method name SwIpEd was changed to swiped
 				}
 				catch (NumberFormatException e) {
-					OuTpUt("Invalid Member Id");
+					output("Invalid Member Id");
 				}
 				break;
 
 				
 			case RESTRICTED:
-				iNpUT("Press <any key> to cancel");
-				CoNtRoL.CaNcEl();
+				input("Press <any key> to cancel");
+				control.cancel();
 				break;
 			
 				
 			case SCANNING:
-				String BoOk_StRiNg_InPuT = iNpUT("Scan Book (<enter> completes): ");
-				if (BoOk_StRiNg_InPuT.length() == 0) {
-					CoNtRoL.CoMpLeTe();
+				//String bookStringInput = input("Scan Book (<enter> completes): ");
+				String bookStringInput = input("Scan Book (<enter> completes): "); 	//variable name bookStringInput was changed to bookStringInput
+				if (bookStringInput.length() == 0) {
+					//control.CoMpLeTe();
+					control.complete(); 	//method name CoMpLeTe was changed to complete
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(BoOk_StRiNg_InPuT).intValue();
-					CoNtRoL.ScAnNeD(BiD);
+					//int BiD = Integer.valueOf(bookStringInput).intValue();
+					int bId = Integer.valueOf(bookStringInput).intValue(); 	//variable name BiD was changed to bId
+					//control.ScAnNeD(bId);
+					control.scanned(bId); 	//method name ScAnNeD was changed to scanned
 					
 				} catch (NumberFormatException e) {
-					OuTpUt("Invalid Book Id");
+					output("Invalid Book Id");
 				} 
 				break;
 					
 				
 			case FINALISING:
-				String AnS = iNpUT("Commit loans? (Y/N): ");
-				if (AnS.toUpperCase().equals("N")) {
-					CoNtRoL.CaNcEl();
+				//String AnS = input("Commit loans? (Y/N): ");
+				String ans = input("Commit loans? (Y/N): "); 	//variable name AnS was changed to ans
+				if (ans.toUpperCase().equals("N")) {
+					control.cancel();
 					
 				} else {
-					CoNtRoL.CoMmIt_LoAnS();
-					iNpUT("Press <any key> to complete ");
+					//control.CoMmIt_Loans();
+					control.commitLoans(); 	//method name CoMmIt_Loans was changed to commitLoans
+					input("Press <any key> to complete ");
 				}
 				break;
 				
 				
 			case COMPLETED:
-				OuTpUt("Borrowing Completed");
+				output("Borrowing Completed");
 				return;
 	
 				
 			default:
-				OuTpUt("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + StaTe);			
+				output("Unhandled state");
+				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);			
 			}
 		}		
 	}
 
 
-	public void DiSpLaY(Object object) {
-		OuTpUt(object);		
+	//public void DiSpLaY(Object object) {
+	public void display(Object object) { 	//method name DiSpLaY was changed to display
+		output(object);		
 	}
 
 

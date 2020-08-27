@@ -1,27 +1,33 @@
 package library.payfine;
 import java.util.Scanner;
 
+// Author   : Rovidu
+// Reviewer : Sankalpa
+// Mediator : Chathura
 
 public class PayFineUI {
 
+//	public static enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // Changed uI_sTaTe to UiState by author
 
-	public static enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-
-	private pAY_fINE_cONTROL CoNtRoL;
+//	private pAY_fINE_cONTROL CoNtRoL;
+	private PayFineControl control; // Changed pAY_fINE_cONTROL to PayFineControl & CoNtRoL to control by author
+        
 	private Scanner input;
-	private uI_sTaTe StAtE;
-
+        
+//	private uI_sTaTe StAtE;
+	private UiState state; // Changed uI_sTaTe to UiState & StAtE to state by author
 	
 	public PayFineUI(pAY_fINE_cONTROL control) {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
-		StAtE = uI_sTaTe.INITIALISED;
+		state = UiState.INITIALISED;
 		control.SeT_uI(this);
 	}
 	
 	
 	public void SeT_StAtE(uI_sTaTe state) {
-		this.StAtE = state;
+		this.state = state;
 	}
 
 
@@ -30,7 +36,7 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {
 			
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
@@ -75,7 +81,7 @@ public class PayFineUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);			
 			
 			}		
 		}		
