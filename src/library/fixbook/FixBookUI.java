@@ -10,18 +10,22 @@ public class FixBookUI {
 	//public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
 	public static enum uiState { INITIALISED, READY, FIXING, COMPLETED }; // changed enum name uI_sTaTe to uiState
 
-	private fIX_bOOK_cONTROL CoNtRoL;
-	private Scanner InPuT;
+	//private fIX_bOOK_cONTROL CoNtRoL;
+	private FixBookControl control; // changed variable type  fIX_bOOK_cONTROL to FixBookControl and CoNtRoL to control
+	//private Scanner InPuT;
+	private Scanner input; // changed variable name InPuT to input
 	//private uI_sTaTe StAtE;
 	private uiState state; // changed enum name uI_sTaTe to uiState
 
 	
-	public FixBookUI(fIX_bOOK_cONTROL CoNtRoL) {
-		this.CoNtRoL = CoNtRoL;
-		InPuT = new Scanner(System.in);
+	public FixBookUI(FixBookControl control) {
+		//this.CoNtRoL = CoNtRoL;
+		this.control = control; //changed variable CoNtRoL to control
+		//InPuT = new Scanner(System.in);
+		input = new Scanner(System.in);
 		//StAtE = uI_sTaTe.INITIALISED;
 		state = uiState.INITIALISED; // changed enum name uI_sTaTe to uiState
-		CoNtRoL.SeT_Ui(this);
+		control.SeT_Ui(this);//changed variable CoNtRoL to control
 	}
 
 
@@ -40,14 +44,19 @@ public class FixBookUI {
 			switch (state) { // changed variable name stAtE to state
 			
 			case READY:
-				String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
-				if (BoOk_EnTrY_StRiNg.length() == 0) 
-					CoNtRoL.SCannING_COMplete();
+				//String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
+				String bookEntryString = input("Scan Book (<enter> completes): "); // changed variable name BoOk_EnTrY_StRiNg to bookEntryString
+				//if (BoOk_EnTrY_StRiNg.length() == 0) 
+				if (bookEntryString.length() == 0) 
+					//CoNtRoL.SCannING_COMplete();
+					control.SCannING_COMplete();
 				
 				else {
 					try {
-						int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
-						CoNtRoL.BoOk_ScAnNeD(BoOk_Id);
+						//int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
+						int bookId = Integer.valueOf(bookEntryString).intValue(); // changed variable name BoOk_EnTrY_StRiNg to bookEntryString
+						//CoNtRoL.BoOk_ScAnNeD(BoOk_Id);
+						control.BoOk_ScAnNeD(bookId);
 					}
 					catch (NumberFormatException e) {
 						OuTpUt("Invalid bookId");
@@ -56,12 +65,15 @@ public class FixBookUI {
 				break;	
 				
 			case FIXING:
-				String AnS = iNpUt("Fix Book? (Y/N) : ");
+				//String AnS = iNpUt("Fix Book? (Y/N) : ");
+				String ans = input("Fix Book? (Y/N) : ");
 				boolean FiX = false;
-				if (AnS.toUpperCase().equals("Y")) 
+				//if (AnS.toUpperCase().equals("Y")) 
+				if (ans.toUpperCase().equals("Y")) 
 					FiX = true;
 				
-				CoNtRoL.FiX_BoOk(FiX);
+				//CoNtRoL.FiX_BoOk(FiX);
+				control.FiX_BoOk(FiX);
 				break;
 								
 			case COMPLETED:
@@ -79,9 +91,11 @@ public class FixBookUI {
 	}
 
 	
-	private String iNpUt(String prompt) {
+	//private String iNpUt(String prompt) {
+	private String input(String prompt) { 
 		System.out.print(prompt);
-		return InPuT.nextLine();
+		//return InPuT.nextLine();
+		return input.nextLine();
 	}	
 		
 		
