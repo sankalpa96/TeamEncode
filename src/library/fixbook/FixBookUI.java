@@ -8,14 +8,14 @@ import java.util.Scanner;
 public class FixBookUI {
 
 	//public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
-	public static enum uiState { INITIALISED, READY, FIXING, COMPLETED }; // changed enum name uI_sTaTe to uiState
+	public static enum UIState { INITIALISED, READY, FIXING, COMPLETED }; // changed enum name uI_sTaTe to UIState
 
 	//private fIX_bOOK_cONTROL CoNtRoL;
 	private FixBookControl control; // changed variable type  fIX_bOOK_cONTROL to FixBookControl and CoNtRoL to control
 	//private Scanner InPuT;
 	private Scanner input; // changed variable name InPuT to input
 	//private uI_sTaTe StAtE;
-	private uiState state; // changed enum name uI_sTaTe to uiState
+	private UIState state; // changed enum name uI_sTaTe to UIState
 
 	
 	public FixBookUI(FixBookControl control) {
@@ -24,13 +24,13 @@ public class FixBookUI {
 		//InPuT = new Scanner(System.in);
 		input = new Scanner(System.in);
 		//StAtE = uI_sTaTe.INITIALISED;
-		state = uiState.INITIALISED; // changed enum name uI_sTaTe to uiState
+		state = UIState.INITIALISED; // changed enum name uI_sTaTe to UIState
 		control.SeT_Ui(this);//changed variable CoNtRoL to control
 	}
 
 
 	//public void SeT_StAtE(uI_sTaTe state) {
-	public void SeT_StAtE(uiState state) { // changed enum name uI_sTaTe to uiState
+	public void SeT_StAtE(UIState state) { // changed enum name uI_sTaTe to UIState
 		this.state = state;
 	}
 
