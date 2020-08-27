@@ -51,11 +51,11 @@ public class FixBookUI {
 				//String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
 				String bookEntryString = input("Scan Book (<enter> completes): "); // changed variable name BoOk_EnTrY_StRiNg to bookEntryString
 				//if (BoOk_EnTrY_StRiNg.length() == 0) 
-				if (bookEntryString.length() == 0) 
+				if (bookEntryString.length() == 0) {
 					//CoNtRoL.SCannING_COMplete();
 					control.SCannING_COMplete();
 				
-				else {
+				}else {
 					try {
 						//int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
 						int bookId = Integer.valueOf(bookEntryString).intValue(); // changed variable name BoOk_EnTrY_StRiNg to bookEntryString
@@ -74,8 +74,11 @@ public class FixBookUI {
 				String ans = input("Fix Book? (Y/N) : ");
 				boolean FiX = false;
 				//if (AnS.toUpperCase().equals("Y")) 
-				if (ans.toUpperCase().equals("Y")) 
+				//if (ans.toUpperCase().equals("Y")) 
+					//FiX = true;
+				if (ans.toUpperCase().equals("Y")) {
 					FiX = true;
+				}
 				
 				//CoNtRoL.FiX_BoOk(FiX);
 				control.fixbook(FiX);
