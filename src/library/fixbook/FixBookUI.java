@@ -25,18 +25,22 @@ public class FixBookUI {
 		input = new Scanner(System.in);
 		//StAtE = uI_sTaTe.INITIALISED;
 		state = UIState.INITIALISED; // changed enum name uI_sTaTe to UIState
-		control.SeT_Ui(this);//changed variable CoNtRoL to control
+		//control.SeT_Ui(this);
+		control.setUI(this);//changed variable CoNtRoL to control
+		
 	}
 
 
 	//public void SeT_StAtE(uI_sTaTe state) {
-	public void SeT_StAtE(UIState state) { // changed enum name uI_sTaTe to UIState
+	public void setState(UIState state) { // changed enum name uI_sTaTe to UIState and SeT_StAtE to setState
 		this.state = state;
 	}
 
 	
-	public void RuN() {
-		OuTpUt("Fix Book Use Case UI\n");
+	//public void RuN() {
+	public void run() { //change method name RuN to run
+		//OuTpUt("Fix Book Use Case UI\n");
+		output("Fix Book Use Case UI\n"); //changed method name OuTpUt to output
 		
 		while (true) {
 			
@@ -59,7 +63,8 @@ public class FixBookUI {
 						control.BoOk_ScAnNeD(bookId);
 					}
 					catch (NumberFormatException e) {
-						OuTpUt("Invalid bookId");
+						//OuTpUt("Invalid bookId");
+						output("Invalid bookId"); //changed method name OuTpUt to output
 					}
 				}
 				break;	
@@ -73,15 +78,17 @@ public class FixBookUI {
 					FiX = true;
 				
 				//CoNtRoL.FiX_BoOk(FiX);
-				control.FiX_BoOk(FiX);
+				control.fixbook(FiX);
 				break;
 								
 			case COMPLETED:
-				OuTpUt("Fixing process complete");
+				//OuTpUt("Fixing process complete");
+				output("Fixing process complete"); //changed method name OuTpUt to output
 				return;
 			
 			default:
-				OuTpUt("Unhandled state");
+				//OuTpUt("Unhandled state");
+				output("Unhandled state"); //changed method name OuTpUt to output
 				//throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);		
 				throw new RuntimeException("FixBookUI : unhandled state :" + state); // changed variable name stAtE to state		
 			
@@ -99,13 +106,16 @@ public class FixBookUI {
 	}	
 		
 		
-	private void OuTpUt(Object object) {
+	//private void OuTpUt(Object object) {
+	private void output(Object object) { //changed method name OuTpUt to output
 		System.out.println(object);
 	}
 	
 
-	public void dIsPlAy(Object object) {
-		OuTpUt(object);
+	//public void dIsPlAy(Object object) {
+	public void display(Object object) { //changed method name dIsPlAy  to display
+		//OuTpUt(object);
+		output(object); //changed method name OuTpUt to output
 	}
 	
 	
